@@ -37,8 +37,22 @@ router.post('/', (req, res) => {
 
     let github = req.body.github ? req.body.github : null;
     let preview = req.body.preview ? req.body.preview : null;
-    let imgPath = req.body.filePath ? req.body.filePath : 'default.jpg';
+    let imgPath = 'uploads/projects/default.jpg';
 
+    const file = req.files.file;
+
+    // If theres a file upload it to public directory
+
+    if (file) {
+        file.mv(`${__dirname}/client/public/uploads/projects/${req.body.id}-${file.name}`, err => {
+            if (err) {
+                console.error(err);
+                return res.status(500).send(err);
+            }
+
+            imgPath = `uploads/projects/${req.body.id}-${file.name}`;
+        });
+    }
     const newPost = new Post({
         title: req.body.title,
         description: req.body.description,

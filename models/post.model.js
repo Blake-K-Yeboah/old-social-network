@@ -23,8 +23,7 @@ const PostSchema = new Schema({
     },
     imgPath: {
         type: String,
-        required: false,
-        default: 'default.jpg'
+        required: true
     },
     postedOn: {
         type: Date,

@@ -2,6 +2,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const passport = require("passport");
+const fileUpload = require('express-fileupload');
 
 const users = require("./routes/api/users.routes");
 const posts = require("./routes/api/posts.routes");
@@ -34,6 +35,9 @@ app.use(passport.initialize());
 
 // Passport config
 require("./config/passport")(passport);
+
+// File Upload Middleware
+app.use(fileUpload());
 
 // Routes
 app.use("/api/users", users);
