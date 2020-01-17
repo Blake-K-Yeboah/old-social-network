@@ -14,8 +14,10 @@ import classNames from 'classnames';
 
 let AboutHeader = () => {
 
+    // Define User
     let user = appStore.auth.user;
 
+    // If The User has dark theme selected change body color
     useEffect(() => {
         if (user && JSON.parse(JSON.stringify(user)).preferredTheme === 'dark') {
             document.body.style.background = "#343A40";
@@ -24,8 +26,10 @@ let AboutHeader = () => {
         }
     }, [user]);
 
+    // Set Theme class (dark or light) based on user
     const themeClass = appStore.auth.user && JSON.parse(JSON.stringify(appStore.auth.user)).preferredTheme === 'dark' ? 'text-light' : '';
 
+    // Set Bg Class (dark or light) based on user
     const bgClass = appStore.auth.user && JSON.parse(JSON.stringify(appStore.auth.user)).preferredTheme === 'dark' ? 'bg-dark' : '';
 
     return (
@@ -39,6 +43,4 @@ let AboutHeader = () => {
     )
 }
 
-AboutHeader = observer(AboutHeader);
-
-export default AboutHeader
+export default observer(AboutHeader)
