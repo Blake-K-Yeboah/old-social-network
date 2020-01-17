@@ -1,23 +1,32 @@
+// Import React and certain hooks
 import React, { useRef, useState, useEffect } from 'react'
 
+// Import appStore
 import appStore from '../store';
 
+// Import observer from mobx-react
 import { observer } from 'mobx-react';
 
+// Import Bootstrap Components
 import { Container, Row, Col, Card, Form, InputGroup, FormControl, Button, ButtonGroup } from 'react-bootstrap'
 
+// Import NavLink and Redirect from React Router
 import { NavLink, Redirect } from 'react-router-dom';
 
+// Import Axios for http requests
 import axios from 'axios';
 
 let EditMenu = () => {
 
+    // Update Active User
     useEffect(() => {
         appStore.updateActiveUser();
     }, []);
 
+    // Redirect state for redirection users back to user page
     const [redirect, setRedirect] = useState(false);
 
+    // Refs for form Inputs
     const refs = {
         firstname: useRef(),
         lastname: useRef(),
@@ -27,7 +36,9 @@ let EditMenu = () => {
         portfolio: useRef(),
     }
 
+    // Save Changes
     const saveChangeHandler = () => {
+        // Define new User Object
         const newUser = {
             firstname: refs.firstname.current.value,
             lastname: refs.lastname.current.value,
@@ -36,8 +47,13 @@ let EditMenu = () => {
             github: refs.github.current.value,
             portfolio: refs.portfolio.current.value,
         }
+
+        // Make a put request to back to update the user
         axios.put(`/api/users/${appStore.auth.user.id}`, newUser, { headers: { 'Content-Type': 'application/json' } }).then(res => {
+            // Update Active User
             appStore.updateActiveUser();
+
+            // Redirect User back to user page
             setRedirect('True');
         }).catch(err => alert(err.msg));
 
@@ -120,6 +136,4 @@ let EditMenu = () => {
     )
 }
 
-EditMenu = observer(EditMenu);
-
-export default EditMenu
+export default observer(EditMenu)
