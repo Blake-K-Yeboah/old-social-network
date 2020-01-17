@@ -19,6 +19,10 @@ const MoreDetails = props => {
             github: `https://github.com/${githubRef.current.value}`
         }
 
+        if (newInput.preview === 'https://www.') newInput.preview = '';
+
+        if (newInput.github === 'https://github.com/') newInput.github = '';
+
         props.setUserInput(newInput);
 
         props.handleClose()
@@ -52,7 +56,7 @@ const MoreDetails = props => {
                         <label htmlFor="preview">Preview Link</label>
                         <InputGroup>
                             <InputGroup.Prepend>
-                                <InputGroup.Text>https://www./</InputGroup.Text>
+                                <InputGroup.Text>https://www.</InputGroup.Text>
                             </InputGroup.Prepend>
                             <FormControl type="text" id="preview" defaultValue={props.userInput.preview.substring(12)} ref={prevRef} />
                         </InputGroup>
