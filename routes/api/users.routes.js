@@ -102,6 +102,7 @@ router.post("/login", (req, res) => {
                     firstname: user.firstname,
                     lastname: user.lastname,
                     bio: user.bio,
+                    email: user.email,
                     createdOn: user.createdON,
                     profileIcon: user.profileIcon,
                     headerImg: user.headerImg,
