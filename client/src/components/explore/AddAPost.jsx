@@ -1,8 +1,14 @@
 import React, { useState } from 'react'
 
-import { Card, Form, FormControl, InputGroup, Button } from 'react-bootstrap';
+import { Card, Form, FormControl, InputGroup, Button, Alert } from 'react-bootstrap';
 
 import MoreDetails from './MoreDetails';
+
+import appStore from '../../store';
+
+import { observer } from 'mobx-react';
+
+import axios from 'axios';
 
 const AddAPost = () => {
 
@@ -15,6 +21,7 @@ const AddAPost = () => {
         github: '',
         preview: ''
     });
+    const [error, setError] = useState(null);
 
     // For Add Details Modal
     const [show, setShow] = useState(false);
@@ -38,6 +45,36 @@ const AddAPost = () => {
         });
     }
 
+    const postProject = () => {
+
+        // Define formData
+        const formData = new FormData();
+
+        // Append File on to formData
+        formData.append('file', file);
+
+        let name = `${appStore.auth.user.firstname} ${appStore.auth.user.lastname}`;
+        let id = appStore.auth.user.id;
+
+        let data = {
+            ...userInput,
+            usersName: name,
+            userId: id
+        }
+
+        //formData.append('data', data);
+        Object.entries(data).forEach(entry => {
+            formData.append(entry[0], entry[1]);
+        });
+
+        axios.post('/api/posts/', formData).then(res => {
+            console.log(res.data);
+        }).catch(err => {
+            let msg = Object.values(err.response.data)[0];
+            setError(msg);
+        })
+    }
+
     return (
         <React.Fragment>
             <Card>
@@ -45,7 +82,10 @@ const AddAPost = () => {
                     <h2 className="font-weight-light">Post Your Project</h2>
                 </Card.Header>
                 <Card.Body>
-                    <Form>
+                    <Alert variant="danger" className={!error ? 'd-none' : ''}>
+                        {error}
+                    </Alert>
+                    <Form onSubmit={e => e.preventDefault()}>
                         <InputGroup className="mb-3">
                             <InputGroup.Prepend>
                                 <InputGroup.Text id="PictureUploadPrepend">Picture</InputGroup.Text>
@@ -62,8 +102,8 @@ const AddAPost = () => {
                         <Form.Group>
                             <span className="text-danger" style={{ cursor: "pointer" }} onClick={handleOpen} >Add More Details</span>
                         </Form.Group>
-                        <Button variant="danger">Post Project</Button>
                     </Form>
+                    <Button variant="danger" onClick={postProject}>Post Project</Button>
                 </Card.Body>
             </Card>
             <MoreDetails userInput={userInput} setUserInput={setUserInput} handleClose={handleClose} show={show} />
@@ -71,4 +111,4 @@ const AddAPost = () => {
     )
 }
 
-export default AddAPost
+export default observer(AddAPost)
