@@ -1,5 +1,6 @@
 const express = require('express');
 const router = express.Router();
+const uuidv4 = require('uuid/v4');
 
 // Load Post Validation
 const validateInput = require('../../validation/post');
@@ -35,31 +36,33 @@ router.post('/', (req, res) => {
         return res.status(400).json(errors);
     }
 
-    let github = req.body.github ? req.body.github : null;
-    let preview = req.body.preview ? req.body.preview : null;
-    let imgPath = 'uploads/projects/default.jpg';
+    let github = req.body.github || null;
+    let preview = req.body.preview || null;
+    let randomId = uuidv4();
+    let img;
+    if (req.files) {
+        const file = req.files.file;
+        const newName = `${req.body.userId}-${randomId}.${file.name.split('.')[1]}`;
+        img = newName;
 
-    const file = req.files.file;
-
-    // If theres a file upload it to public directory
-
-    if (file) {
-        file.mv(`${__dirname}/client/public/uploads/projects/${req.body.id}-${file.name}`, err => {
+        file.mv(`./client/public/uploads/projects/${newName}`, err => {
             if (err) {
                 console.error(err);
-                return res.status(500).send(err);
+                return res.status(500).json({ error: 'Server Error. Try Again Later' });
             }
-
-            imgPath = `uploads/projects/${req.body.id}-${file.name}`;
         });
+    } else {
+        return res.status(400).json({ error: 'You have to upload an image.' })
     }
+
+
     const newPost = new Post({
         title: req.body.title,
         description: req.body.description,
-        imgPath,
+        img,
         github,
         preview,
-        postedBy: req.body.id
+        postedBy: { name: req.body.usersName, id: req.body.userId }
     });
 
     newPost.save().then(post => res.json(post)).catch(err => console.log(err));
