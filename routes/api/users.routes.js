@@ -135,4 +135,38 @@ router.post("/login", (req, res) => {
     });
 });
 
+router.put('/:id', (req, res) => {
+
+    // Update User In Database
+    User.findByIdAndUpdate(req.params.id, req.body, { upsert: true }, (err, doc) => {
+        if (err) return res.send(500, { msg: err });
+        return res.send('Updated User!');
+    });
+
+});
+
+router.post('/:id/profilepic', (req, res) => {
+
+    if (req.files === null) {
+        return res.status(400).json({ msg: 'No file uploaded' });
+    }
+
+    const file = req.files.file;
+
+    const newName = `${req.params.id}.${file.name.split('.')[1]}`;
+
+    file.mv(`./client/public/uploads/profile/${newName}`, err => {
+        if (err) {
+            console.error(err);
+            return res.status(500).send(err);
+        } else {
+            User.findByIdAndUpdate(req.params.id, { profileIcon: newName }, { upsert: true }, (err, doc) => {
+                if (err) return res.send(500, { msg: err });
+                return res.send('Added Profile Picture');
+            })
+        }
+
+    });
+})
+
 module.exports = router;
