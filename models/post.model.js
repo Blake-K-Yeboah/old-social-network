@@ -21,7 +21,7 @@ const PostSchema = new Schema({
         required: false,
         default: null
     },
-    imgPath: {
+    img: {
         type: String,
         required: true
     },
@@ -31,21 +31,18 @@ const PostSchema = new Schema({
     },
     likes: {
         type: Array,
-        required: false,
         default: []
     },
     dislikes: {
         type: Array,
-        required: false,
         default: []
     },
     tags: {
-        type: Array,
-        required: false,
-        default: []
+        type: String,
+        default: ''
     },
     postedBy: {
-        type: String,
+        type: Object,
         required: true
     }
 });
