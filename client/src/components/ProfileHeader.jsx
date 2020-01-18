@@ -13,6 +13,9 @@ import appStore from '../store';
 // Import Observer from Mobx-React
 import { observer } from 'mobx-react';
 
+// Import Prop Types
+import PropTypes from 'prop-types';
+
 let ProfileHeader = props => {
 
     // Define User
@@ -77,6 +80,15 @@ let ProfileHeader = props => {
             </Card>) : <div className="text-center"><Spinner animation="border" variant="danger" style={{ marginTop: "45vh" }} /></div>}
         </React.Fragment>
     )
+}
+
+// Set Prop Types
+ProfileHeader.propTypes = {
+    noedit: PropTypes.bool,
+    activeUser: PropTypes.oneOfType([
+        PropTypes.oneOf([null]).isRequired,
+        PropTypes.object.isRequired
+    ]).isRequired
 }
 
 // Export Component as observer

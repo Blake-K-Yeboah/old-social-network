@@ -43,7 +43,7 @@ let EditMenu = () => {
             firstname: refs.firstname.current.value,
             lastname: refs.lastname.current.value,
             bio: refs.bio.current.value,
-            theme: refs.theme.current.options[refs.theme.current.selectedIndex].value,
+            preferredTheme: refs.theme.current.options[refs.theme.current.selectedIndex].value,
             github: refs.github.current.value,
             portfolio: refs.portfolio.current.value,
         }

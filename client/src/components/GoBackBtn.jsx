@@ -6,6 +6,9 @@ import { NavLink } from 'react-router-dom';
 // Import Button From React Bootstrap
 import { Button } from 'react-bootstrap';
 
+// Import PropTypes 
+import PropTypes from 'prop-types';
+
 const GoBackBtn = props => {
     return (
         <div className="mt-3 mb-5 text-center">
@@ -14,6 +17,10 @@ const GoBackBtn = props => {
             </NavLink>
         </div>
     )
+}
+
+GoBackBtn.propTypes = {
+    id: PropTypes.string
 }
 
 export default GoBackBtn;
