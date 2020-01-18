@@ -1,7 +1,9 @@
 import React from 'react';
 
+// Import Navlink from react router dom
 import { NavLink } from 'react-router-dom';
 
+// Import Button From React Bootstrap
 import { Button } from 'react-bootstrap';
 
 const GoBackBtn = props => {
