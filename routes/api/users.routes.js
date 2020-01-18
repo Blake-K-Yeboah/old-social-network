@@ -167,6 +167,29 @@ router.post('/:id/profilepic', (req, res) => {
         }
 
     });
-})
+});
+
+router.post('/:id/header', (req, res) => {
+
+    if (req.files === null) {
+        return res.status(400).json({ msg: 'No file uploaded' });
+    }
+
+    const file = req.files.file;
+
+    const newName = `${req.params.id}.${file.name.split('.')[1]}`;
+
+    file.mv(`./client/public/uploads/header/${newName}`, err => {
+        if (err) {
+            console.error(err);
+            return res.status(500).send(err);
+        } else {
+            User.findByIdAndUpdate(req.params.id, { headerImg: newName }, { upsert: true }, (err, doc) => {
+                if (err) return res.send(500, { msg: err });
+                return res.send('Added Header Image');
+            })
+        }
+    });
+});
 
 module.exports = router;
