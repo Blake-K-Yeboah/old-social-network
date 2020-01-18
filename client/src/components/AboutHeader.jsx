@@ -19,7 +19,7 @@ let AboutHeader = () => {
 
     // If The User has dark theme selected change body color
     useEffect(() => {
-        if (user && JSON.parse(JSON.stringify(user)).preferredTheme === 'dark') {
+        if (user && JSON.parse(JSON.stringify(user)).preferredTheme === 'Dark') {
             document.body.style.background = "#343A40";
         } else {
             document.body.style.background = "#E9ECEF";
@@ -27,10 +27,10 @@ let AboutHeader = () => {
     }, [user]);
 
     // Set Theme class (dark or light) based on user
-    const themeClass = appStore.auth.user && JSON.parse(JSON.stringify(appStore.auth.user)).preferredTheme === 'dark' ? 'text-light' : '';
+    const themeClass = appStore.auth.user && JSON.parse(JSON.stringify(appStore.auth.user)).preferredTheme === 'Dark' ? 'text-light' : '';
 
     // Set Bg Class (dark or light) based on user
-    const bgClass = appStore.auth.user && JSON.parse(JSON.stringify(appStore.auth.user)).preferredTheme === 'dark' ? 'bg-dark' : '';
+    const bgClass = appStore.auth.user && JSON.parse(JSON.stringify(appStore.auth.user)).preferredTheme === 'Dark' ? 'bg-dark' : '';
 
     return (
         <Jumbotron className={bgClass}>
