@@ -14,6 +14,7 @@ const User = require("../../models/user.model");
 // Default Users Route
 router.get("/:id?", (req, res) => {
 
+    // If There is an id return specific user
     if (req.params.id) {
 
         // Return individual user
@@ -33,6 +34,7 @@ router.get("/:id?", (req, res) => {
         })
     }
 });
+
 // Register Route
 router.post("/register", (req, res) => {
 
@@ -44,9 +46,11 @@ router.post("/register", (req, res) => {
         return res.status(400).json(errors);
     }
     User.findOne({ email: req.body.email }).then(user => {
+        // Check If a user with that email exists
         if (user) {
             return res.status(400).json({ error: 'true', email: "Email already exists" });
         } else {
+            // Create A new User Model
             const newUser = new User({
                 firstname: req.body.firstname,
                 lastname: req.body.lastname,
@@ -135,6 +139,7 @@ router.post("/login", (req, res) => {
     });
 });
 
+// Update Route
 router.put('/:id', (req, res) => {
 
     // Update User In Database
@@ -145,21 +150,27 @@ router.put('/:id', (req, res) => {
 
 });
 
+// Upload Profile Picture ROute
 router.post('/:id/profilepic', (req, res) => {
 
+    // If There isnt an image return status 400
     if (req.files === null) {
         return res.status(400).json({ msg: 'No file uploaded' });
     }
 
+    // Define Specific File
     const file = req.files.file;
 
+    // Define New Name For File
     const newName = `${req.params.id}.${file.name.split('.')[1]}`;
 
+    // Upload File to uploads folder
     file.mv(`./client/public/uploads/profile/${newName}`, err => {
         if (err) {
             console.error(err);
             return res.status(500).send(err);
         } else {
+            // Update User in database
             User.findByIdAndUpdate(req.params.id, { profileIcon: newName }, { upsert: true }, (err, doc) => {
                 if (err) return res.send(500, { msg: err });
                 return res.send('Added Profile Picture');
@@ -169,21 +180,28 @@ router.post('/:id/profilepic', (req, res) => {
     });
 });
 
+// Upload Header Img Route
 router.post('/:id/header', (req, res) => {
 
+    // If There isnt an image return status 400
     if (req.files === null) {
         return res.status(400).json({ msg: 'No file uploaded' });
     }
 
+    // Define Specific FIle
     const file = req.files.file;
 
+    // Define New Name
     const newName = `${req.params.id}.${file.name.split('.')[1]}`;
 
+    // Upload FIle to uploads folder
     file.mv(`./client/public/uploads/header/${newName}`, err => {
         if (err) {
             console.error(err);
             return res.status(500).send(err);
         } else {
+
+            // Update User in Database
             User.findByIdAndUpdate(req.params.id, { headerImg: newName }, { upsert: true }, (err, doc) => {
                 if (err) return res.send(500, { msg: err });
                 return res.send('Added Header Image');
