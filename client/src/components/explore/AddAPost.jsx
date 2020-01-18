@@ -69,6 +69,7 @@ const AddAPost = () => {
 
         axios.post('/api/posts/', formData).then(res => {
             console.log(res.data);
+            appStore.fetchPosts();
         }).catch(err => {
             let msg = Object.values(err.response.data)[0];
             setError(msg);
