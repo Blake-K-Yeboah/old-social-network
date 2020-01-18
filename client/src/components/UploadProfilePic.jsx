@@ -50,8 +50,13 @@ const UploadProfilePic = () => {
         // Make Post Request to backend api
         axios.post(`/api/users/${appStore.auth.user.id}/profilepic`, formData, { headers: { 'Content-Type': 'multipart/form-data' } })
             .then(res => {
+                // Update Active user 
                 appStore.updateActiveUser();
+
+                // Alert that is was successfull
                 alert('Succesfully Uploads profile Picture');
+
+                // Remove Error if there was one
                 setError(null);
             }).catch(err => {
                 setError('There Was An Error');
