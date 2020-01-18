@@ -16,6 +16,7 @@ import { Row, Col, Container } from 'react-bootstrap';
 import AccountControls from '../explore/AccountControls';
 import AddAPost from '../explore/AddAPost';
 import SuggestedUsers from '../explore/SuggestedUsers';
+import Posts from '../explore/Posts';
 
 const Explore = () => {
 
@@ -34,6 +35,9 @@ const Explore = () => {
                 <Row>
                     <Col md={4} className="mb-4">
                         <SuggestedUsers />
+                    </Col>
+                    <Col md={8}>
+                        <Posts />
                     </Col>
                 </Row>
             </Container>
