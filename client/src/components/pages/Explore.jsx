@@ -2,21 +2,13 @@ import React from 'react'
 
 // Import Page Components
 import Navigation from '../layout/Navbar';
-
-// Components
-
-/* 
-    -- AccountControls
-    -- Add a post (MoreDetails - modal)
-    -- Suggested Users (List of SmallUserItems)
-    -- PostList (List of PostItems)
-*/
-
-import { Row, Col, Container } from 'react-bootstrap';
 import AccountControls from '../explore/AccountControls';
 import AddAPost from '../explore/AddAPost';
 import SuggestedUsers from '../explore/SuggestedUsers';
 import Posts from '../explore/Posts';
+import Footer from '../layout/Footer';
+
+import { Row, Col, Container } from 'react-bootstrap';
 
 const Explore = () => {
 
@@ -41,6 +33,7 @@ const Explore = () => {
                     </Col>
                 </Row>
             </Container>
+            <Footer type="large" />
         </div>
     )
 }
