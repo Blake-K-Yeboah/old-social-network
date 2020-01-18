@@ -90,5 +90,23 @@ router.post('/', (req, res) => {
     newPost.save().then(post => res.json(post)).catch(err => console.log(err));
 
 });
+
+// Like Route
+router.post('/:id/like', (req, res) => {
+    const uid = req.body.uid;
+
+    Post.findByIdAndUpdate(req.params.id, { $push: { likes: uid } }, (err, doc) => {
+        if (err) res.send(500, err);
+    })
+});
+
+// Dislike Route
+router.post('/:id/dislike', (req, res) => {
+    const uid = req.body.uid;
+
+    Post.findByIdAndUpdate(req.params.id, { $push: { dislikes: uid } }, (err, doc) => {
+        if (err) res.send(500, err);
+    })
+});
 // Export Router
 module.exports = router;
