@@ -78,6 +78,17 @@ class Store {
             console.log(err);
         })
     }
+
+    // Array of posts
+    posts = null;
+
+    fetchPosts = async () => {
+        await axios.get('/api/posts').then(res => {
+            this.posts = res.data.reverse();
+        }).catch(err => {
+            console.log(err);
+        })
+    }
 }
 
 // Initiate a store called appStore
@@ -95,7 +106,9 @@ decorate(appStore, {
     setCurrentUser: action,
     updateActiveUser: action,
     users: observable,
-    fetchUsers: action
+    fetchUsers: action,
+    posts: observable,
+    fetchPosts: action
 });
 
 // Export appStore
