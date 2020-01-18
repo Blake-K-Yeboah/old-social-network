@@ -1,10 +1,13 @@
 const Validator = require("validator");
 const isEmpty = require("is-empty");
 
+// Export validation function
 module.exports = function validateRegisterInput(data) {
 
+    // Define Errors
     let errors = {};
 
+    // Convert Empty Values to Empty Strings
     data.firstname = !isEmpty(data.firstname) ? data.firstname : "";
     data.lastname = !isEmpty(data.lastname) ? data.lastname : "";
     data.email = !isEmpty(data.email) ? data.email : "";
@@ -34,6 +37,7 @@ module.exports = function validateRegisterInput(data) {
         errors.password = "Password must be at least 8 characters";
     }
 
+    // Return Errors and is valid boolean
     return {
         errors,
         isValid: isEmpty(errors)
