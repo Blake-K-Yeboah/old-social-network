@@ -20,7 +20,7 @@ let SuggestedUsers = () => {
 
     const users = appStore.users;
 
-    const activeUsers = users ? parse(users).filter(user =>  user._id !== parse(appStore.auth.user).id) : null;
+    const activeUsers = users ? parse(users).filter(user => user._id !== parse(appStore.auth.user).id) : null;
 
     return (
         <Card>
@@ -29,7 +29,7 @@ let SuggestedUsers = () => {
             </Card.Header>
             <Card.Body>
                 <ListGroup variant="flush">
-                    {users ? activeUsers.map((user, index) => {
+                    {users ? activeUsers.slice(0, 3).map((user, index) => {
                         return (
                             <ListGroup.Item key={user._id} className={index === 1 ? 'py-3' : 'pb-2'}>
                                 <Media>
