@@ -17,7 +17,7 @@ let Header = () => {
     let user = appStore.auth.user;
 
     useEffect(() => {
-        if (user && JSON.parse(JSON.stringify(user)).preferredTheme === 'dark') {
+        if (user && JSON.parse(JSON.stringify(user)).preferredTheme === 'Dark') {
             document.body.style.background = "#343A40";
         } else {
             document.body.style.background = "#E9ECEF";
@@ -28,9 +28,9 @@ let Header = () => {
         appStore.openSignUpModal();
     }
 
-    const themeClass = appStore.auth.user && JSON.parse(JSON.stringify(appStore.auth.user)).preferredTheme === 'dark' ? 'text-light' : '';
+    const themeClass = appStore.auth.user && JSON.parse(JSON.stringify(appStore.auth.user)).preferredTheme === 'Dark' ? 'text-light' : '';
 
-    const bgClass = appStore.auth.user && JSON.parse(JSON.stringify(appStore.auth.user)).preferredTheme === 'dark' ? 'bg-dark' : '';
+    const bgClass = appStore.auth.user && JSON.parse(JSON.stringify(appStore.auth.user)).preferredTheme === 'Dark' ? 'bg-dark' : '';
 
     return (
         <Jumbotron className={bgClass} style={{ transition: ".6s ease-in-out" }}>
