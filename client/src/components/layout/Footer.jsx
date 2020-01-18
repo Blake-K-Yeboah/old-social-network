@@ -1,5 +1,7 @@
 import React from 'react'
 
+import PropTypes from 'prop-types';
+
 const Footer = ({ type }) => {
 
     const smallFooter = (
@@ -20,4 +22,7 @@ const Footer = ({ type }) => {
     )
 }
 
+Footer.propTypes = {
+    type: PropTypes.string
+}
 export default Footer
