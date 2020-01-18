@@ -16,7 +16,8 @@ let UserEdit = props => {
 
     useEffect(() => {
         appStore.fetchUsers();
-    }, [])
+    }, []);
+
     const activeUser = appStore.users ? appStore.users.filter(user => user._id === props.match.params.id)[0] : null;
 
     return (
@@ -32,6 +33,4 @@ let UserEdit = props => {
     )
 }
 
-UserEdit = observer(UserEdit);
-
-export default UserEdit
+export default observer(UserEdit);
