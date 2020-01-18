@@ -123,7 +123,7 @@ let EditMenu = () => {
                                             <NavLink to={`/user/${appStore.auth.user.id}`}>
                                                 <Button variant="secondary">Cancel</Button>
                                             </NavLink>
-                                            <Button variant="danger" className="ml-2" onClick={saveChangeHandler}>Save Changes</Button>
+                                            <Button variant="danger" className="ml-2 rounded-lg" onClick={saveChangeHandler}>Save Changes</Button>
                                         </ButtonGroup>
                                     </Row>
                                 </Card.Footer>
