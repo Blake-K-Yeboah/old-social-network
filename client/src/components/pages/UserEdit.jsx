@@ -8,6 +8,8 @@ import ProfileHeader from '../ProfileHeader';
 import Navigation from '../layout/Navbar';
 import EditMenu from '../EditMenu';
 import UploadProfilePic from '../UploadProfilePic';
+import UploadHeaderImg from '../UploadHeaderImg';
+import GoBackBtn from '../GoBackBtn';
 import Footer from '../layout/Footer';
 
 let UserEdit = props => {
@@ -23,6 +25,8 @@ let UserEdit = props => {
             <ProfileHeader noedit={true} activeUser={activeUser} />
             <EditMenu />
             <UploadProfilePic />
+            <UploadHeaderImg />
+            <GoBackBtn id={props.match.params.id} />
             <Footer type="large" />
         </React.Fragment>
     )
