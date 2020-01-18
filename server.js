@@ -4,9 +4,11 @@ const bodyParser = require('body-parser');
 const passport = require("passport");
 const fileUpload = require('express-fileupload');
 
+// Impoort Routes
 const users = require("./routes/api/users.routes");
 const posts = require("./routes/api/posts.routes");
 
+// Initialize Express
 const app = express();
 
 // Bodyparser middleware
@@ -43,6 +45,8 @@ app.use(fileUpload());
 app.use("/api/users", users);
 app.use("/api/posts", posts);
 
+// process.env.PORT is herokus port else 5000
 const port = process.env.PORT || 5000;
 
+// Listen On Port
 app.listen(port, () => console.log(`Server up and running on port ${port} !`));
