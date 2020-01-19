@@ -10,6 +10,8 @@ import appStore from '../../store';
 
 import { observer } from 'mobx-react';
 
+import classNames from 'classnames';
+
 const Post = ({ post }) => {
 
     // Define LoggedIn User Id
@@ -20,6 +22,8 @@ const Post = ({ post }) => {
 
     // Define Disliked Status
     const [disliked, setDisliked] = useState(post.dislikes.includes(uid));
+
+    const condition = appStore.auth.user.preferredTheme === 'Dark';
 
     // Calculate Time ago (e.g 5 seconds ago, 2 hours ago, etc)
     const time_ago = (time) => {
@@ -131,9 +135,9 @@ const Post = ({ post }) => {
     }
 
     const popover = (
-        <Popover id="popover-basic">
-            <Popover.Title as="h4">Edit Project</Popover.Title>
-            <Popover.Content>
+        <Popover id="popover-basic" className={classNames({ 'bg-dark': condition })}>
+            <Popover.Title as="h4" className={classNames({ 'bg-dark': condition, 'text-light': condition })}>Edit Project</Popover.Title>
+            <Popover.Content className={classNames({ 'text-light': condition })}>
                 Click <NavLink to={`/project/edit/${post._id}`} className="text-danger">here</NavLink> to edit this project.
             </Popover.Content>
         </Popover>
@@ -141,14 +145,14 @@ const Post = ({ post }) => {
 
     const edit = (
         <OverlayTrigger trigger="click" placement="right" overlay={popover}>
-            <span className="float-right text-dark" style={{ cursor: 'pointer' }}>&#8942;</span>
+            <span className={classNames('float-right', { 'text-dark': !condition, 'text-light': condition })} style={{ cursor: 'pointer' }}>&#8942;</span>
         </OverlayTrigger>
     )
 
     return (
         <Row className="my-4">
             <Col md={12}>
-                <Card className="mb-3">
+                <Card className={classNames("mb-3", { 'bg-dark': condition, 'text-light': condition })}>
                     <Row className="no-gutters">
                         <Col md={6}>
                             <img src={`/uploads/projects/${post.img}`} className="card-img" alt={`${post.title} Screenshot`} style={{ height: '100%' }} />
@@ -158,9 +162,9 @@ const Post = ({ post }) => {
                                 {post.postedBy.id === appStore.auth.user.id ? edit : ''}
                                 <Card.Title>{post.title}</Card.Title>
                                 <Card.Text className="text-truncate">{post.description}</Card.Text>
-                                {post.github ? <Card.Link className="text-dark" href={post.github}>View Code</Card.Link> : <span className="text-muted">View Code</span>}
 
-                                <NavLink className="text-dark ml-4" to={`/project/${post._id}`}>View Project</NavLink>
+                                {post.github ? <Card.Link className={classNames({ "text-dark": !condition, "text-light": condition })} href={post.github}>View Code</Card.Link> : <span className="text-muted">View Code</span>}
+                                <NavLink className={classNames("ml-4", { "text-dark": !condition, "text-light": condition })} to={`/project/${post._id}`}>View Project</NavLink>
                                 <hr className="my-2" />
                                 <span className="text-success mr-2" style={{ cursor: 'pointer' }} onClick={likeProject}>{liked ? 'Liked' : 'Like'}</span>
                                 <Badge variant="success">{post.likes.length}</Badge>
