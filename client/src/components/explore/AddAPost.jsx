@@ -10,6 +10,8 @@ import { observer } from 'mobx-react';
 
 import axios from 'axios';
 
+import classNames from 'classnames';
+
 const AddAPost = () => {
 
     const [file, setFile] = useState('');
@@ -76,9 +78,13 @@ const AddAPost = () => {
         })
     }
 
+    const theme = appStore.auth.user.preferredTheme;
+
+    const condition = theme === 'Dark';
+
     return (
         <React.Fragment>
-            <Card>
+            <Card className={classNames({ 'bg-dark': condition, 'text-light': condition })}>
                 <Card.Header className="pt-4 pl-4">
                     <h2 className="font-weight-light">Post Your Project</h2>
                 </Card.Header>
@@ -89,16 +95,16 @@ const AddAPost = () => {
                     <Form onSubmit={e => e.preventDefault()}>
                         <InputGroup className="mb-3">
                             <InputGroup.Prepend>
-                                <InputGroup.Text id="PictureUploadPrepend">Picture</InputGroup.Text>
+                                <InputGroup.Text id="PictureUploadPrepend" className={classNames({ 'bg-secondary': condition })}>Picture</InputGroup.Text>
                             </InputGroup.Prepend>
                             <div className="custom-file">
-                                <input type="file" className="custom-file-input" id="PictureUpload" onChange={onChange} />
-                                <label className="custom-file-label" htmlFor="PictureUpload">{fileName}</label>
+                                <input type="file" className={classNames("custom-file-input", { 'bg-dark': condition })} id="PictureUpload" onChange={onChange} />
+                                <label className={classNames("custom-file-label", { 'bg-dark': condition, 'text-light': condition && fileName !== 'Choose File' })} htmlFor="PictureUpload">{fileName}</label>
                             </div>
                         </InputGroup>
                         <Form.Group>
                             <label htmlFor="title">Title</label>
-                            <FormControl type="text" placeholder="Title: " id="title" onChange={titleOnChange} defaultValue={userInput.title} />
+                            <FormControl type="text" placeholder="Title: " id="title" onChange={titleOnChange} defaultValue={userInput.title} className={condition ? 'bg-dark text-light' : ''}/>
                         </Form.Group>
                         <Form.Group>
                             <span className="text-danger" style={{ cursor: "pointer" }} onClick={handleOpen} >Add More Details</span>
