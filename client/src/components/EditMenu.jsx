@@ -99,7 +99,7 @@ let EditMenu = () => {
                                             </InputGroup.Prepend>
                                             <FormControl as="select" ref={refs.theme}>
                                                 <option>Light</option>
-                                                {appStore.auth.user.preferredTheme === 'dark' ? <option selected>Dark</option> : <option>Dark</option>}
+                                                {appStore.auth.user.preferredTheme === 'Dark' ? <option selected>Dark</option> : <option>Dark</option>}
                                             </FormControl>
                                         </InputGroup>
                                         <InputGroup className="mb-4">
