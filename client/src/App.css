@@ -1,3 +1,15 @@
+::-webkit-scrollbar {
+    width: 5px;
+}
+
+::-webkit-scrollbar-track {
+    background: #212121;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #DC3545;
+}
+
 html, body {
     background: #E9ECEF;
     height:100%;
@@ -5,5 +17,9 @@ html, body {
 }
 
 body {
+    transition: background .6s ease-in-out;
+}
+
+* {
     transition: background .6s ease-in-out;
 }
