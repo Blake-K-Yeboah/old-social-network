@@ -18,6 +18,8 @@ import axios from 'axios';
 
 import classNames from 'classnames';
 
+import { FaTimes, FaCheck } from 'react-icons/fa';
+
 let EditMenu = () => {
 
     // Update Active User
@@ -129,9 +131,9 @@ let EditMenu = () => {
                                     <Row className="justify-content-end pr-2">
                                         <ButtonGroup>
                                             <NavLink to={`/user/${appStore.auth.user.id}`}>
-                                                <Button variant="secondary">Cancel</Button>
+                                                <Button variant="secondary">Cancel <FaTimes style={{marginLeft: '5px'}}/></Button>
                                             </NavLink>
-                                            <Button variant="danger" className="ml-2 rounded-lg" onClick={saveChangeHandler}>Save Changes</Button>
+                                            <Button variant="danger" className="ml-2 rounded-lg" onClick={saveChangeHandler}>Save Changes <FaCheck style={{marginLeft: '5px'}}/></Button>
                                         </ButtonGroup>
                                     </Row>
                                 </Card.Footer>

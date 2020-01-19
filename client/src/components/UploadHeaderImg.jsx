@@ -15,6 +15,8 @@ import axios from 'axios';
 
 import classNames from 'classnames';
 
+import { MdFileUpload } from 'react-icons/md';
+
 const UploadHeaderImg = () => {
 
     // File State to store user's uploaded file
@@ -93,7 +95,7 @@ const UploadHeaderImg = () => {
                                     </div>
                                 </InputGroup>
                                 <p className="text-center">
-                                    <Button type="submit" variant="danger">Upload</Button>
+                                    <Button type="submit" variant="danger">Upload <MdFileUpload style={{marginLeft: '5px'}}/></Button>
                                 </p>
                             </Form>
                         </Card.Body>

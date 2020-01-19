@@ -9,11 +9,13 @@ import { Button } from 'react-bootstrap';
 // Import PropTypes 
 import PropTypes from 'prop-types';
 
+import { FaAngleLeft } from 'react-icons/fa';
+
 const GoBackBtn = props => {
     return (
         <div className="mt-3 mb-5 text-center">
             <NavLink to={`/user/${props.id}`}>
-                <Button variant="danger">Go Back</Button>
+                <Button variant="danger"><FaAngleLeft style={{marginRight: '5px'}}/> Go Back</Button>
             </NavLink>
         </div>
     )

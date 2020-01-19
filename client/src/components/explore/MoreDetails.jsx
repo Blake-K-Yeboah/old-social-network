@@ -2,6 +2,8 @@ import React, { useRef } from 'react';
 
 import { Modal, Button, Form, InputGroup, FormControl } from 'react-bootstrap';
 
+import { FaTimes, FaCheck } from 'react-icons/fa';
+
 const MoreDetails = props => {
 
     const descRef = useRef();
@@ -65,10 +67,10 @@ const MoreDetails = props => {
             </Modal.Body>
             <Modal.Footer>
                 <Button variant="secondary" onClick={props.handleClose}>
-                    Cancel
+                    Cancel <FaTimes style={{marginLeft: '5px'}}/>
           </Button>
                 <Button variant="danger" onClick={addDetails}>
-                    Add Details
+                    Add Details <FaCheck style={{marginLeft: '5px'}}/>
           </Button>
             </Modal.Footer>
         </Modal>

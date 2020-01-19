@@ -16,6 +16,7 @@ import axios from 'axios';
 import classNames from 'classnames';
 
 import { FaUserPlus, FaTimes } from 'react-icons/fa';
+import { GoAlert } from 'react-icons/go';
 
 let SignUp = () => {
 
@@ -66,7 +67,7 @@ let SignUp = () => {
             </Modal.Header>
             <Modal.Body>
                 <Alert variant="danger" className={classNames(classes)}>
-                    {appStore.auth.error}
+                    <GoAlert style={{marginRight: '5px'}}/> {appStore.auth.error}
                 </Alert>
                 <Form>
                     <Form.Row className="mb-4">

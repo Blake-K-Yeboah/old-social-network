@@ -12,6 +12,10 @@ import axios from 'axios';
 
 import classNames from 'classnames';
 
+import { FaPlus } from 'react-icons/fa';
+
+import { GoAlert } from 'react-icons/go';
+
 const AddAPost = () => {
 
     const [file, setFile] = useState('');
@@ -90,7 +94,7 @@ const AddAPost = () => {
                 </Card.Header>
                 <Card.Body>
                     <Alert variant="danger" className={!error ? 'd-none' : ''}>
-                        {error}
+                        <GoAlert style={{marginRight: '5px'}}/> {error}
                     </Alert>
                     <Form onSubmit={e => e.preventDefault()}>
                         <InputGroup className="mb-3">
@@ -110,7 +114,7 @@ const AddAPost = () => {
                             <span className="text-danger" style={{ cursor: "pointer" }} onClick={handleOpen} >Add More Details</span>
                         </Form.Group>
                     </Form>
-                    <Button variant="danger" onClick={postProject}>Post Project</Button>
+                    <Button variant="danger" onClick={postProject}>Post Project <FaPlus style={{marginLeft: '5px', marginTop: '-2px'}}/></Button>
                 </Card.Body>
             </Card>
             <MoreDetails userInput={userInput} setUserInput={setUserInput} handleClose={handleClose} show={show} />
