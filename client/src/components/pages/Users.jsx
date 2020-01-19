@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 
 import Navigation from '../layout/Navbar';
 import Footer from '../layout/Footer';
@@ -7,7 +7,26 @@ import UserList from '../explore/UserList';
 
 import { Row, Col, Container } from 'react-bootstrap';
 
+import appStore from '../../store';
+
+import { observer } from 'mobx-react';
+
 const Users = () => {
+
+    // Define User
+    let user = appStore.auth.user;
+
+    // If The User has dark theme selected change container background color
+    useEffect(() => {
+        if (user && JSON.parse(JSON.stringify(user)).preferredTheme === 'Dark') {
+            // Change Container Background to dark grey
+            document.body.style.background = "#212121";
+        } else {
+            // Change Container Background to light grey
+            document.body.style.background = "#E9ECEF";
+        }
+    }, [user]);
+
     return (
         <React.Fragment>
             <Navigation />
@@ -26,4 +45,4 @@ const Users = () => {
     )
 }
 
-export default Users
+export default observer(Users);
