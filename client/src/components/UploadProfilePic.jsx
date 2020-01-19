@@ -13,6 +13,8 @@ import { Container, Card, Form, Button, InputGroup, Row, Col, Alert } from 'reac
 // Import Axios to make http requests
 import axios from 'axios';
 
+import classNames from 'classnames';
+
 const UploadProfilePic = () => {
 
     // File State to store user's uploaded file
@@ -62,12 +64,15 @@ const UploadProfilePic = () => {
                 setError('There Was An Error');
             })
     }
+
+    const condition = appStore.auth.user.preferredTheme === 'Dark';
+
     return (
         <Container className="mb-5">
-            <h1 className="display-4 text-center mb-5">Upload Profile Picture</h1>
+            <h1 className={classNames("display-4", "text-center", "mb-5", { 'text-light': condition })}>Upload Profile Picture</h1>
             <Row className="justify-content-center">
                 <Col md={8}>
-                    <Card>
+                    <Card className={classNames({ 'bg-dark': condition })}>
                         <Card.Body>
                             <Alert variant="danger" className={!error ? 'd-none' : ''}>
                                 {error}
@@ -75,11 +80,11 @@ const UploadProfilePic = () => {
                             <Form onSubmit={submitHandler}>
                                 <InputGroup className="mb-3">
                                     <InputGroup.Prepend>
-                                        <InputGroup.Text id="ProfilePictureUploadPrepend">Upload</InputGroup.Text>
+                                        <InputGroup.Text id="ProfilePictureUploadPrepend" className={classNames({ 'bg-secondary': condition, 'text-light': condition })}>Upload</InputGroup.Text>
                                     </InputGroup.Prepend>
                                     <div className="custom-file">
                                         <input type="file" className="custom-file-input" id="ProfilePictureUpload" onChange={onChange} />
-                                        <label className="custom-file-label" htmlFor="ProfilePictureUpload">{fileName}</label>
+                                        <label htmlFor="ProfilePictureUpload" className={classNames("custom-file-label", { 'bg-dark': condition, 'text-light': condition && fileName !== 'Choose File'  })}>{fileName}</label>
                                     </div>
                                 </InputGroup>
                                 <p className="text-center">
