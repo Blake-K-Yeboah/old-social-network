@@ -16,6 +16,7 @@ import Explore from './components/pages/Explore';
 import Users from './components/pages/Users';
 import SingleUser from './components/pages/SingleUser';
 import UserEdit from './components/pages/UserEdit';
+import NotFound from './components/pages/NotFound';
 
 const App = () => {
   return (
@@ -58,6 +59,8 @@ const App = () => {
               <Redirect to="/" />
             )
         } />
+
+        <Route path="*" component={NotFound} />
 
       </Switch>
 
