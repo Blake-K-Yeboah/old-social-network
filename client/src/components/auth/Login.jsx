@@ -15,6 +15,8 @@ import jwt_decode from 'jwt-decode';
 // Import axios 
 import axios from 'axios';
 
+import { GoSignIn } from 'react-icons/go';
+
 let Login = () => {
 
     const loginHandler = () => {
@@ -59,7 +61,7 @@ let Login = () => {
         <Form inline>
             <FormControl type="email" placeholder="Email" id="email" className="mr-sm-2" defaultValue={appStore.userInput.email} onChange={changeHandler}/>
             <FormControl type="password" placeholder="Password" id="password" className="mr-sm-2" defaultValue={appStore.userInput.password}  onChange={changeHandler}/>
-            <Button variant="outline-light" onClick={loginHandler}>Login</Button>
+            <Button variant="outline-light" onClick={loginHandler}>Login <GoSignIn style={{marginLeft: '5px'}}/></Button>
         </Form>
     )
 }

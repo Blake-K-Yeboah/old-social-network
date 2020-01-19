@@ -15,6 +15,8 @@ import axios from 'axios';
 // Import classnames
 import classNames from 'classnames';
 
+import { FaUserPlus, FaTimes } from 'react-icons/fa';
+
 let SignUp = () => {
 
     const [userInput, setUserInput] = useState({
@@ -89,10 +91,10 @@ let SignUp = () => {
             </Modal.Body>
             <Modal.Footer>
                 <Button variant="secondary" onClick={closeHandler}>
-                    Close
+                    Close <FaTimes style={{marginLeft: '5px'}}/>
                 </Button>
                 <Button variant="danger" onClick={signUpHandler}>
-                    Sign Up
+                    Sign Up <FaUserPlus style={{marginLeft: '5px'}}/>
                 </Button>
             </Modal.Footer>
         </Modal >

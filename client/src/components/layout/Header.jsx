@@ -12,6 +12,8 @@ import { observer } from 'mobx-react';
 // Import classnames
 import classNames from 'classnames';
 
+import { FaUserPlus } from 'react-icons/fa';
+
 let Header = () => {
 
     let user = appStore.auth.user;
@@ -39,8 +41,8 @@ let Header = () => {
                 DevNetwork is a social network for developers where you can post your projects and interact with a community full of people with similar interests.
              </p>
             <p className="text-center">
-                {appStore.auth.isAuthenticated ? <Button variant="danger" size="lg" disabled>Sign Up</Button>
-                    : <Button variant="danger" size="lg" onClick={openModal}>Sign Up</Button>}
+                {appStore.auth.isAuthenticated ? <Button variant="danger" size="lg" disabled>Sign Up <FaUserPlus style={{marginLeft: '5px'}}/></Button>
+                    : <Button variant="danger" size="lg" onClick={openModal}>Sign Up <FaUserPlus style={{marginLeft: '5px'}}/></Button>}
             </p>
         </Jumbotron>
 

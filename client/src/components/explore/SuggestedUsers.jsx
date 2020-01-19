@@ -10,6 +10,8 @@ import { NavLink } from 'react-router-dom';
 
 import classNames from 'classnames';
 
+import { FaUsers } from 'react-icons/fa';
+
 let SuggestedUsers = () => {
 
     useEffect(() => {
@@ -74,7 +76,7 @@ let SuggestedUsers = () => {
 
                         <Button variant="danger">
 
-                            View All
+                            View All <FaUsers style={{marginLeft: '5px'}}/>
 
 
                         </Button>

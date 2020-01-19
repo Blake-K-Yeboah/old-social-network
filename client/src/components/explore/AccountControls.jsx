@@ -12,6 +12,8 @@ import axios from 'axios';
 
 import classNames from 'classnames';
 
+import { GoSignOut } from 'react-icons/go';
+
 let AccountControls = () => {
 
     const user = appStore.auth.user;
@@ -72,7 +74,7 @@ let AccountControls = () => {
 
                         </ListGroup>
 
-                        <Button variant="danger" onClick={logOutHandler}>Logout</Button>
+                        <Button variant="danger" onClick={logOutHandler}>Logout <GoSignOut style={{marginLeft: '5px'}} /></Button>
                     </Card.Body>
 
                 </Card>
