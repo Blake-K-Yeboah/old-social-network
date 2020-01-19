@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useRef } from 'react'
 
 // Import Page Components
 import Navigation from '../layout/Navbar';
@@ -10,10 +10,29 @@ import Footer from '../layout/Footer';
 
 import { Row, Col, Container } from 'react-bootstrap';
 
+import appStore from '../../store';
+
+import { observer } from 'mobx-react';
+
 const Explore = () => {
 
+    // Define Contianer Ref
+    let containerRef = useRef();
+
+    // Define User
+    let user = appStore.auth.user;
+
+    // If The User has dark theme selected change container background color
+    useEffect(() => {
+        if (user && JSON.parse(JSON.stringify(user)).preferredTheme === 'Dark') {
+            containerRef.current.style.background = "#171717";
+        } else {
+            containerRef.current.style.background = "#E9ECEF";
+        }
+    }, [user]);
+
     return (
-        <div>
+        <div ref={containerRef}>
             <Navigation />
             <Container className="my-5">
                 <Row>
@@ -38,4 +57,4 @@ const Explore = () => {
     )
 }
 
-export default Explore
+export default observer(Explore);
