@@ -25,8 +25,10 @@ const Explore = () => {
     // If The User has dark theme selected change container background color
     useEffect(() => {
         if (user && JSON.parse(JSON.stringify(user)).preferredTheme === 'Dark') {
+            // Change Container Background to dark grey
             containerRef.current.style.background = "#171717";
         } else {
+            // Change Container Background to light grey
             containerRef.current.style.background = "#E9ECEF";
         }
     }, [user]);
