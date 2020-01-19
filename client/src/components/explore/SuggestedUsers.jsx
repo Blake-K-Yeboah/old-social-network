@@ -8,6 +8,8 @@ import { Card, Media, Spinner, ListGroup, Button } from 'react-bootstrap';
 
 import { NavLink } from 'react-router-dom';
 
+import classNames from 'classnames';
+
 let SuggestedUsers = () => {
 
     useEffect(() => {
@@ -22,8 +24,12 @@ let SuggestedUsers = () => {
 
     const activeUsers = users ? parse(users).filter(user => user._id !== parse(appStore.auth.user).id) : null;
 
+    const theme = appStore.auth.user.preferredTheme;
+
+    const condition = theme === "Dark";
+
     return (
-        <Card>
+        <Card className={classNames({ 'bg-dark': condition, 'text-light': condition })}>
             <Card.Header>
                 Suggested Users
             </Card.Header>
@@ -31,7 +37,7 @@ let SuggestedUsers = () => {
                 <ListGroup variant="flush">
                     {users ? activeUsers.slice(0, 3).map((user, index) => {
                         return (
-                            <ListGroup.Item key={user._id} className={index === 1 ? 'py-3' : 'pb-2'}>
+                            <ListGroup.Item key={user._id} className={classNames({'py-3': index === 1, 'pb-2': index !== 1, 'bg-dark': condition })}>
                                 <Media>
 
                                     <img src={`/uploads/profile/${user.profileIcon}`} alt={`${user.firstname} Profile Icon`} className="mr-3 mt-1" style={{ width: '48px', borderRadius: '50%' }} />
@@ -40,7 +46,7 @@ let SuggestedUsers = () => {
 
                                         <h5 className="mt-0">
 
-                                            <NavLink to={`/user/${user._id}`} className="text-dark">
+                                            <NavLink to={`/user/${user._id}`} className={classNames({"text-dark": !condition, "text-light": condition})}>
 
                                                 {`${user.firstname} ${user.lastname}`}
 
