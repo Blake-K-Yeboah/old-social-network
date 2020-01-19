@@ -16,6 +16,8 @@ import { observer } from 'mobx-react';
 // Import Prop Types
 import PropTypes from 'prop-types';
 
+import classNames from 'classnames';
+
 let ProfileHeader = props => {
 
     // Define User
@@ -53,9 +55,11 @@ let ProfileHeader = props => {
     const editProfile = appStore.auth.isAuthenticated && user &&
         user._id === appStore.auth.user.id ? <NavLink to={`/user/edit/${appStore.auth.user.id}`}><Button variant={props.noedit ? 'secondary' : 'danger'} className="ml-2">Edit Profile</Button></NavLink> : null;
 
+    const condition = appStore.auth.user.preferredTheme === 'Dark';
+
     return (
         <React.Fragment>
-            {user ? (<Card>
+            {user ? (<Card className={classNames({ 'bg-dark': condition, 'text-light': condition })}>
                 <Card.Img variant="top" src={`/uploads/header/${user.headerImg}`} style={headerImgStyle} />
                 <Card.Body>
                     <Container>
