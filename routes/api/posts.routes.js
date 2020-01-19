@@ -81,6 +81,7 @@ router.post('/', (req, res) => {
         title: req.body.title,
         description: req.body.description,
         img,
+        tags: req.body.tags,
         github,
         preview,
         postedBy: { name: req.body.usersName, id: req.body.userId }
