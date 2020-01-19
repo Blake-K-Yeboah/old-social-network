@@ -10,6 +10,8 @@ import { NavLink, Redirect } from 'react-router-dom';
 
 import axios from 'axios';
 
+import classNames from 'classnames';
+
 let AccountControls = () => {
 
     const user = appStore.auth.user;
@@ -32,13 +34,17 @@ let AccountControls = () => {
         setRedirect(true);
     }
 
+    const theme = appStore.auth.user.preferredTheme;
+
+    const condition = theme === 'Dark';
+
     return (
         <React.Fragment>
 
             {redirect ? <Redirect to="/" />
-                : <Card>
+                : <Card className={classNames({ 'text-light': condition, 'bg-dark': condition })}>
 
-                    <Card.Header className="py-4">
+                    <Card.Header className='py-4'>
 
                         <Media>
 
@@ -46,7 +52,7 @@ let AccountControls = () => {
 
                             <Media.Body>
 
-                                <h5 className="mt-0">{`${user.firstname} ${user.lastname}`}</h5>
+                                <h5 className='mt-0'>{`${user.firstname} ${user.lastname}`}</h5>
 
                                 {user.bio ? user.bio : 'No Bio'}
 
@@ -60,9 +66,9 @@ let AccountControls = () => {
 
                         <ListGroup className="mt-3 mb-5" variant="flush">
 
-                            <NavLink className="list-group-item text-dark" to={`/user/${user.id}`}>View Profile</NavLink>
+                            <NavLink className={classNames("list-group-item", { 'text-dark': !condition, 'text-light': condition, 'bg-dark': condition })} to={`/user/${user.id}`}>View Profile</NavLink>
 
-                            <NavLink className="list-group-item text-dark" to={`/user/edit/${user.id}`}>Edit Profile</NavLink>
+                            <NavLink className={classNames("list-group-item", { 'text-dark': !condition, 'text-light': condition, 'bg-dark': condition })} to={`/user/edit/${user.id}`}>Edit Profile</NavLink>
 
                         </ListGroup>
 
