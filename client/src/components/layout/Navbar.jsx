@@ -49,7 +49,7 @@ let Navigation = () => {
 
             </span>
 
-            <Button variant={`outline-${appStore.auth.user.preferredTheme.toLowerCase()}`} onClick={logOutHandler}>Logout <GoSignOut style={{marginLeft: '5px'}} /></Button>
+            <Button variant={`outline-${appStore.auth.user.preferredTheme.toLowerCase()}`} onClick={logOutHandler}>Logout <GoSignOut style={{ marginLeft: '5px' }} /></Button>
 
         </div>
     ) : null;
@@ -57,7 +57,7 @@ let Navigation = () => {
     return (
 
         <Navbar bg="danger" expand="lg" variant="dark" className="py-3 px-4" style={{ zIndex: '1' }}>
-            <Navbar.Brand href="#home"><IoIosCode style={{marginTop: '-3.5px'}} /> DevNetwork</Navbar.Brand>
+            <Navbar.Brand><NavLink to="/" className="text-light"><IoIosCode style={{ marginTop: '-3.5px' }} /> DevNetwork</NavLink></Navbar.Brand>
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
             <Navbar.Collapse id="basic-navbar-nav">
                 <Nav className="mr-auto">
