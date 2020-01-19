@@ -46,7 +46,7 @@ let Navigation = () => {
 
             </span>
 
-            <Button variant={`outline-${appStore.auth.user.preferredTheme}`} onClick={logOutHandler}>Logout</Button>
+            <Button variant={`outline-${appStore.auth.user.preferredTheme.toLowerCase()}`} onClick={logOutHandler}>Logout</Button>
 
         </div>
     ) : null;
