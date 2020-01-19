@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useRef } from 'react'
 
 import appStore from '../../store';
 
@@ -14,14 +14,28 @@ import Footer from '../layout/Footer';
 
 let UserEdit = props => {
 
+    // Define Contianer Ref
+    let containerRef = useRef();
+
+    // Define User
+    let user = appStore.auth.user;
+
     useEffect(() => {
         appStore.fetchUsers();
-    }, []);
+        if (user && JSON.parse(JSON.stringify(user)).preferredTheme === 'Dark') {
+            // Change Container Background to dark grey
+            containerRef.current.style.background = "#212121";
+        } else {
+            // Change Container Background to light grey
+            containerRef.current.style.background = "#E9ECEF";
+        }
+    }, [user]);
+
 
     const activeUser = appStore.users ? appStore.users.filter(user => user._id === props.match.params.id)[0] : null;
 
     return (
-        <React.Fragment>
+        <div ref={containerRef}>
             <Navigation />
             <ProfileHeader noedit={true} activeUser={activeUser} />
             <EditMenu />
@@ -29,7 +43,7 @@ let UserEdit = props => {
             <UploadHeaderImg />
             <GoBackBtn id={props.match.params.id} />
             <Footer type="large" />
-        </React.Fragment>
+        </div>
     )
 }
 
