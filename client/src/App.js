@@ -25,9 +25,9 @@ const App = () => {
 
         <Route exact path="/" component={Home} />
 
-        <Route path="/about" component={About} />
+        <Route exact path="/about" component={About} />
 
-        <Route path="/explore" render={props =>
+        <Route exact path="/explore" render={props =>
           localStorage.getItem('jwtToken') ? (
             <Explore {...props} />
           ) : (
@@ -35,7 +35,7 @@ const App = () => {
             )
         } />
 
-        <Route path="/users" render={props =>
+        <Route exact path="/users" render={props =>
           localStorage.getItem('jwtToken') ? (
             <Users {...props} />
           ) : (
@@ -51,7 +51,7 @@ const App = () => {
             )
         } />
 
-        <Route path="/user/edit/:id" render={props =>
+        <Route exact path="/user/edit/:id" render={props =>
           localStorage.getItem('jwtToken') ? (
             <UserEdit {...props} />
           ) : (
