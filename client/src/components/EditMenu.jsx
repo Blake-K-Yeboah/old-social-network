@@ -16,6 +16,8 @@ import { NavLink, Redirect } from 'react-router-dom';
 // Import Axios for http requests
 import axios from 'axios';
 
+import classNames from 'classnames';
+
 let EditMenu = () => {
 
     // Update Active User
@@ -59,14 +61,20 @@ let EditMenu = () => {
 
     }
 
+    const condition = appStore.auth.user.preferredTheme === 'Dark';
+
+    const inputClass = classNames({ 'bg-dark': condition, 'text-light': condition });
+
+    const prependClass = classNames({ 'bg-secondary': condition, 'text-light': condition });
+
     return (
         <React.Fragment>
             {redirect ? <Redirect to={`/user/${appStore.auth.user.id}`} />
                 : (<Container className="mb-5">
-                    <h1 className="text-center display-4 py-5">Edit Profile</h1>
+                    <h1 className={classNames("text-center", "display-4", "py-5", { 'text-light': condition })}>Edit Profile</h1>
                     <Row className="justify-content-center">
                         <Col md={8}>
-                            <Card>
+                            <Card className={classNames({ 'bg-dark': condition, 'text-light': condition })}>
                                 <Card.Header>
                                     <small>Account ID: {appStore.auth.user.id}</small>
                                 </Card.Header>
@@ -74,45 +82,45 @@ let EditMenu = () => {
                                     <Form>
                                         <InputGroup className="mb-4 mt-3">
                                             <InputGroup.Prepend>
-                                                <InputGroup.Text>First and last name</InputGroup.Text>
+                                                <InputGroup.Text className={prependClass}>First and last name</InputGroup.Text>
                                             </InputGroup.Prepend>
-                                            <FormControl defaultValue={appStore.auth.user.firstname} ref={refs.firstname} />
-                                            <FormControl defaultValue={appStore.auth.user.lastname} ref={refs.lastname} />
+                                            <FormControl defaultValue={appStore.auth.user.firstname} ref={refs.firstname} className={inputClass} />
+                                            <FormControl defaultValue={appStore.auth.user.lastname} ref={refs.lastname} className={inputClass} />
                                         </InputGroup>
                                         <InputGroup className="mb-4">
                                             <InputGroup.Prepend>
-                                                <InputGroup.Text>Bio</InputGroup.Text>
+                                                <InputGroup.Text className={prependClass}>Bio</InputGroup.Text>
                                             </InputGroup.Prepend>
-                                            <FormControl defaultValue={appStore.auth.user.bio} placeholder="No Bio" ref={refs.bio} />
+                                            <FormControl defaultValue={appStore.auth.user.bio} placeholder="No Bio" ref={refs.bio} className={inputClass} />
                                         </InputGroup>
                                         <InputGroup className="mb-1">
                                             <InputGroup.Prepend>
-                                                <InputGroup.Text>Email</InputGroup.Text>
+                                                <InputGroup.Text className={prependClass}>Email</InputGroup.Text>
                                             </InputGroup.Prepend>
-                                            <FormControl defaultValue={appStore.auth.user.email} type="email" disabled />
+                                            <FormControl defaultValue={appStore.auth.user.email} type="email" disabled className={inputClass} />
                                         </InputGroup>
                                         <small className="text-muted">You cannot change your account email address.</small>
 
                                         <InputGroup className="my-4">
                                             <InputGroup.Prepend>
-                                                <InputGroup.Text>Theme</InputGroup.Text>
+                                                <InputGroup.Text className={prependClass}>Theme</InputGroup.Text>
                                             </InputGroup.Prepend>
-                                            <FormControl as="select" ref={refs.theme}>
+                                            <FormControl as="select" ref={refs.theme} className={inputClass}>
                                                 <option>Light</option>
                                                 {appStore.auth.user.preferredTheme === 'Dark' ? <option selected>Dark</option> : <option>Dark</option>}
                                             </FormControl>
                                         </InputGroup>
                                         <InputGroup className="mb-4">
                                             <InputGroup.Prepend>
-                                                <InputGroup.Text>Github</InputGroup.Text>
+                                                <InputGroup.Text className={prependClass}>Github</InputGroup.Text>
                                             </InputGroup.Prepend>
-                                            <FormControl defaultValue={appStore.auth.user.github} placeholder="No Github" ref={refs.github} />
+                                            <FormControl defaultValue={appStore.auth.user.github} placeholder="No Github" ref={refs.github} className={inputClass} />
                                         </InputGroup>
                                         <InputGroup className="mb-4">
                                             <InputGroup.Prepend>
-                                                <InputGroup.Text>Portfolio</InputGroup.Text>
+                                                <InputGroup.Text className={prependClass}>Portfolio</InputGroup.Text>
                                             </InputGroup.Prepend>
-                                            <FormControl defaultValue={appStore.auth.user.portfolio} placeholder="No Portfolio" ref={refs.portfolio} />
+                                            <FormControl defaultValue={appStore.auth.user.portfolio} placeholder="No Portfolio" ref={refs.portfolio} className={inputClass} />
                                         </InputGroup>
                                     </Form>
                                     <p className="lead">It may take a minute for changes to take effect.</p>
