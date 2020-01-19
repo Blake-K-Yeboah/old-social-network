@@ -82,20 +82,6 @@ const Post = ({ post }) => {
         return time;
     }
 
-    const timeRef = useRef();
-
-
-    if (window.location.pathname === '/explore') {
-        const setTime = () => {
-            setInterval(() => {
-                let content = time_ago(post.postedOn);
-                timeRef.current.textContent = content;
-            }, 1000);
-        }
-
-        setTime();
-    }
-
     const likeProject = () => {
         if (liked) {
             alert('Youve Already Liked this post');
@@ -173,7 +159,7 @@ const Post = ({ post }) => {
                                 <Badge variant="danger">{post.dislikes.length}</Badge>
                             </Card.Body>
                             <Card.Footer className="text-muted">
-                                Posted <span ref={timeRef}>{time_ago(post.postedOn)}</span> by <NavLink className="text-danger" to={`/user/${post.postedBy.id}`}>{post.postedBy.name}</NavLink>
+                                Posted {time_ago(post.postedOn)} by <NavLink className="text-danger" to={`/user/${post.postedBy.id}`}>{post.postedBy.name}</NavLink>
                             </Card.Footer>
                         </Col>
                     </Row>
