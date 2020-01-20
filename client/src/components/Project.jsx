@@ -1,19 +1,26 @@
 import React, { useState } from 'react'
 
+// Import Bootstrap Components
 import { Card, Badge } from 'react-bootstrap';
 
+// Import Axios
 import axios from 'axios';
 
+// Import appStore
 import appStore from '../store';
 
+// Import observer
 import { observer } from 'mobx-react';
 
+// Import NavLink
 import { NavLink } from 'react-router-dom';
 
+// Import classNames
 import classNames from 'classnames';
 
 const Project = props => {
 
+    // Destructure props
     const { project } = props;
 
     // Define LoggedIn User Id
@@ -25,6 +32,7 @@ const Project = props => {
     // Define Disliked Status
     const [disliked, setDisliked] = useState(project.dislikes.includes(uid));
 
+    // Like Project Function
     const likeProject = () => {
         if (liked) {
             alert('Youve Already Liked this project');
@@ -44,6 +52,7 @@ const Project = props => {
         }
     }
 
+    // Dislike Project Function
     const dislikeProject = () => {
         if (disliked) {
             alert('Youve Already Disliked this project');
@@ -120,6 +129,7 @@ const Project = props => {
         return time;
     }
 
+    // Define Dark Theme Condition
     const condition = appStore.auth.user.preferredTheme === "Dark";
 
     return (

@@ -1,14 +1,18 @@
 import React, { useEffect } from 'react'
 
+// Import appStore
 import appStore from '../store';
 
+// Import observer
 import { observer } from 'mobx-react';
 
 // Import React-Bootstrap jumbotron
 import { Jumbotron } from 'react-bootstrap';
 
+// Import NavLink from react router dom
 import { NavLink } from 'react-router-dom';
 
+// Import classNames
 import classNames from 'classnames';
 
 const NotFoundHeader = () => {

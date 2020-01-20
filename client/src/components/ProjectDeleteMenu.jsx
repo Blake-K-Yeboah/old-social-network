@@ -1,16 +1,21 @@
 import React from 'react'
 
+// Import Bootstrap Components
 import { Card, Button } from 'react-bootstrap';
 
+// Import Icons
 import { GoAlert } from 'react-icons/go';
 import { MdDeleteForever } from 'react-icons/md';
 
+// Import Axios
 import axios from 'axios';
 
+// Import classNames
 import classNames from 'classnames';
 
 const ProjectDeleteMenu = props => {
 
+    // Function to delete Project
     const deleteProject = () => {
         axios.delete(`/api/posts/${props.id}`).then(res => {
             window.history.replaceState('explore', 'DevNetwork - Explore', '/explore');
@@ -18,6 +23,7 @@ const ProjectDeleteMenu = props => {
         }).catch(err => console.error(err));
     }
 
+    // Dark Theme COndition
     const condition = props.theme === 'Dark';
 
     return (

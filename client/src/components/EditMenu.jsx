@@ -16,11 +16,13 @@ import { NavLink, Redirect } from 'react-router-dom';
 // Import Axios for http requests
 import axios from 'axios';
 
+// Import classNames
 import classNames from 'classnames';
 
+// Import Icons
 import { FaTimes, FaCheck } from 'react-icons/fa';
 
-let EditMenu = () => {
+const EditMenu = () => {
 
     // Update Active User
     useEffect(() => {
@@ -63,10 +65,13 @@ let EditMenu = () => {
 
     }
 
+    // Define Dark Theme Condition
     const condition = appStore.auth.user.preferredTheme === 'Dark';
 
+    // Define Input Class (reduces repitition among elements)
     const inputClass = classNames({ 'bg-dark': condition, 'text-light': condition });
 
+    // Define Prepend Class
     const prependClass = classNames({ 'bg-secondary': condition, 'text-light': condition });
 
     return (
@@ -131,9 +136,9 @@ let EditMenu = () => {
                                     <Row className="justify-content-end pr-2">
                                         <ButtonGroup>
                                             <NavLink to={`/user/${appStore.auth.user.id}`}>
-                                                <Button variant="secondary">Cancel <FaTimes style={{marginLeft: '5px'}}/></Button>
+                                                <Button variant="secondary">Cancel <FaTimes style={{ marginLeft: '5px' }} /></Button>
                                             </NavLink>
-                                            <Button variant="danger" className="ml-2 rounded-lg" onClick={saveChangeHandler}>Save Changes <FaCheck style={{marginLeft: '5px'}}/></Button>
+                                            <Button variant="danger" className="ml-2 rounded-lg" onClick={saveChangeHandler}>Save Changes <FaCheck style={{ marginLeft: '5px' }} /></Button>
                                         </ButtonGroup>
                                     </Row>
                                 </Card.Footer>

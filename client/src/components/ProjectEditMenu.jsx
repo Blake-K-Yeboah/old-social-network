@@ -1,29 +1,39 @@
 import React, { useRef } from 'react'
 
+// Import appStore
 import appStore from '../store';
 
+// Import observer
 import { observer } from 'mobx-react';
 
+// Import Bootstrap Components
 import { Card, Spinner, Form, FormControl, InputGroup, Button, Row, ButtonGroup } from 'react-bootstrap';
 
+// Import Icons
 import { FaTimes, FaCheck } from 'react-icons/fa';
 
+// Import NavLink
 import { NavLink } from 'react-router-dom';
 
+// Import Axios
 import axios from 'axios';
 
+// Import classNames
 import classNames from 'classnames';
 
 const ProjectEditMenu = props => {
 
+    // Destructure Props
     const { project } = props;
 
+    // Define input Ref
     const titleRef = useRef();
     const descRef = useRef();
     const tagsRef = useRef();
     const prevRef = useRef();
     const githubRef = useRef();
 
+    // Save Changes
     const saveChangeHandler = () => {
 
         const body = {
@@ -47,10 +57,13 @@ const ProjectEditMenu = props => {
 
     }
 
+    // Define Dark Theme Condition
     const condition = appStore.auth.user.preferredTheme === 'Dark';
 
+    // Define Input Class
     const inputClass = classNames({ 'bg-dark': condition, 'text-light': condition });
 
+    // Define prepend Class
     const prependClass = classNames({ 'bg-secondary': condition, 'text-light': condition });
 
     return (

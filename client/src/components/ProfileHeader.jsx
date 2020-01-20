@@ -16,12 +16,14 @@ import { observer } from 'mobx-react';
 // Import Prop Types
 import PropTypes from 'prop-types';
 
+// Import classNames
 import classNames from 'classnames';
 
+// Import Icons
 import { FaGithub } from 'react-icons/fa';
 import { MdWebAsset, MdModeEdit } from 'react-icons/md';
 
-let ProfileHeader = props => {
+const ProfileHeader = props => {
 
     // Define User
     const user = props.activeUser;
@@ -44,20 +46,21 @@ let ProfileHeader = props => {
 
     // Portfolio Button 
     const portfolioBtn = user && user.portfolio ? <a href={!user.portfolio.startsWith('https://') ? `https://${user.portfolio}` : user.portfolio} className="text-dark ml-2">
-        <Button variant="danger">Portfolio <MdWebAsset style={{marginLeft: '5px', marginTop: '-2.5px'}}/></Button>
+        <Button variant="danger">Portfolio <MdWebAsset style={{ marginLeft: '5px', marginTop: '-2.5px' }} /></Button>
     </a>
-        : <Button variant="danger" className="ml-2" disabled>Portfolio <MdWebAsset style={{marginLeft: '5px', marginTop: '-2.5px'}}/></Button>
+        : <Button variant="danger" className="ml-2" disabled>Portfolio <MdWebAsset style={{ marginLeft: '5px', marginTop: '-2.5px' }} /></Button>
 
     // Github Button
     const githubBtn = user && user.github ? (<a href={!user.github.startsWith('https://') ? `https://${user.github}` : user.github} className="text-dark">
-        <Button variant="danger">Github <FaGithub style={{marginLeft: '5px', marginTop: '-2.5px'}}/></Button>
+        <Button variant="danger">Github <FaGithub style={{ marginLeft: '5px', marginTop: '-2.5px' }} /></Button>
     </a>)
-        : (<Button variant="danger" disabled>Github <FaGithub style={{marginLeft: '5px', marginTop: '-2.5px'}}/></Button>);
+        : (<Button variant="danger" disabled>Github <FaGithub style={{ marginLeft: '5px', marginTop: '-2.5px' }} /></Button>);
 
     // Edit Profile Button
     const editProfile = appStore.auth.isAuthenticated && user &&
-        user._id === appStore.auth.user.id ? <NavLink to={`/user/edit/${appStore.auth.user.id}`}><Button variant={props.noedit ? 'secondary' : 'danger'} className="ml-2">Edit Profile <MdModeEdit style={{marginLeft: '5px', marginTop: '-2.5px'}}/></Button></NavLink> : null;
+        user._id === appStore.auth.user.id ? <NavLink to={`/user/edit/${appStore.auth.user.id}`}><Button variant={props.noedit ? 'secondary' : 'danger'} className="ml-2">Edit Profile <MdModeEdit style={{ marginLeft: '5px', marginTop: '-2.5px' }} /></Button></NavLink> : null;
 
+    // Define Dark Theme Condition
     const condition = appStore.auth.user.preferredTheme === 'Dark';
 
     return (

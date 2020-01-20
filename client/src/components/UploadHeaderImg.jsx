@@ -13,8 +13,10 @@ import { Container, Card, Form, Button, InputGroup, Row, Col, Alert } from 'reac
 // Import Axios to make http requests
 import axios from 'axios';
 
+// Import classNames
 import classNames from 'classnames';
 
+// Import Icon
 import { MdFileUpload } from 'react-icons/md';
 
 const UploadHeaderImg = () => {
@@ -72,6 +74,7 @@ const UploadHeaderImg = () => {
             })
     }
 
+    // Define Dark THeme COndition
     const condition = appStore.auth.user.preferredTheme === 'Dark';
 
     return (
@@ -91,11 +94,11 @@ const UploadHeaderImg = () => {
                                     </InputGroup.Prepend>
                                     <div className="custom-file">
                                         <input type="file" className="custom-file-input" id="HeaderImgUpload" onChange={onChange} />
-                                        <label htmlFor="HeaderImgUpload" className={classNames("custom-file-label", { 'bg-dark': condition, 'text-light': condition && fileName !== 'Choose File'  })}>{fileName}</label>
+                                        <label htmlFor="HeaderImgUpload" className={classNames("custom-file-label", { 'bg-dark': condition, 'text-light': condition && fileName !== 'Choose File' })}>{fileName}</label>
                                     </div>
                                 </InputGroup>
                                 <p className="text-center">
-                                    <Button type="submit" variant="danger">Upload <MdFileUpload style={{marginLeft: '5px'}}/></Button>
+                                    <Button type="submit" variant="danger">Upload <MdFileUpload style={{ marginLeft: '5px' }} /></Button>
                                 </p>
                             </Form>
                         </Card.Body>
