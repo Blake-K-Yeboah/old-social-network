@@ -5,6 +5,7 @@ import Navigation from '../layout/Navbar';
 import Footer from '../layout/Footer';
 import AboutHeader from '../AboutHeader';
 
+// Import Helmet
 import { Helmet } from 'react-helmet';
 
 const About = () => {

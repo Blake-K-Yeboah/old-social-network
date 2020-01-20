@@ -1,16 +1,21 @@
 import React, { useEffect, useRef } from 'react'
 
+// Import appstore
 import appStore from '../../store';
 
+// Import Observer
 import { observer } from 'mobx-react';
 
+// Import page components
 import Navigation from '../layout/Navbar';
 import ProjectEditMenu from '../ProjectEditMenu';
 import ProjectDeleteMenu from '../ProjectDeleteMenu';
 import Footer from '../layout/Footer';
 
+// Import React Bootstrap Components
 import { Container, Row, Col } from 'react-bootstrap';
 
+// Import Helmet
 import { Helmet } from 'react-helmet';
 
 const ProjectEdit = props => {
@@ -22,6 +27,7 @@ const ProjectEdit = props => {
 
     useEffect(() => {
 
+        // Fetch Posts
         appStore.fetchPosts();
 
         if (user && JSON.parse(JSON.stringify(user)).preferredTheme === 'Dark') {
@@ -33,6 +39,7 @@ const ProjectEdit = props => {
         }
     }, [user]);
 
+    // Define Project
     const project = appStore.posts ? appStore.posts.filter(post => post._id === props.match.params.id)[0] : null;
 
     return (

@@ -1,16 +1,21 @@
 import React, { useEffect } from 'react'
 
+// Import Page Components
 import Navigation from '../layout/Navbar';
 import Footer from '../layout/Footer';
 import AccountControls from '../explore/AccountControls';
 import UserList from '../explore/UserList';
 
+// Import Bootstrap Components
 import { Row, Col, Container } from 'react-bootstrap';
 
+// Import appStore
 import appStore from '../../store';
 
+// Import observer
 import { observer } from 'mobx-react';
 
+// Import Helmet
 import { Helmet } from 'react-helmet';
 
 const Users = () => {

@@ -8,12 +8,16 @@ import SuggestedUsers from '../explore/SuggestedUsers';
 import Posts from '../explore/Posts';
 import Footer from '../layout/Footer';
 
+// Import React Bootstrap Components for layout
 import { Row, Col, Container } from 'react-bootstrap';
 
+// import appStore
 import appStore from '../../store';
 
+// Import observer
 import { observer } from 'mobx-react';
 
+// Import Helmet
 import { Helmet } from 'react-helmet';
 
 const Explore = () => {

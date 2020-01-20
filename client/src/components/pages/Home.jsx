@@ -9,6 +9,7 @@ import SignUp from '../auth/SignUp.jsx';
 // Import React-Bootstrap Components
 import { Row, Container, Col } from 'react-bootstrap';
 
+// Import Helmet
 import { Helmet } from 'react-helmet'
 
 const Home = () => {

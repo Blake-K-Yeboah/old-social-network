@@ -1,9 +1,11 @@
 import React from 'react'
 
+// Import Page Components
 import Navigation from '../layout/Navbar';
 import Footer from '../layout/Footer';
 import NotFoundHeader from '../NotFoundHeader';
 
+// Import Helmet
 import { Helmet } from 'react-helmet';
 
 const NotFound = () => {

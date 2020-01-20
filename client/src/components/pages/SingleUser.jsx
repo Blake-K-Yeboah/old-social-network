@@ -1,22 +1,28 @@
 import React, { useEffect, useRef } from 'react';
 
+// Import appStore
 import appStore from '../../store';
 
+// Import observer
 import { observer } from 'mobx-react';
 
+// Import Page Components
 import Navigation from '../layout/Navbar';
 import ProfileHeader from '../ProfileHeader';
 import SuggestedUsers from '../explore/SuggestedUsers';
 import PostList from '../explore/PostList';
 import Footer from '../layout/Footer';
 
+// Import bootstrap components
 import { Container, Row, Col } from 'react-bootstrap';
 
+// Import Helmet
 import classNames from 'classnames';
 
+// Import Helemet
 import { Helmet } from 'react-helmet';
 
-let SingleUser = props => {
+const SingleUser = props => {
 
     // Define Container Ref
     let containerRef = useRef();
@@ -26,6 +32,7 @@ let SingleUser = props => {
 
     useEffect(() => {
 
+        // Fetch Users
         appStore.fetchUsers();
 
         if (user && JSON.parse(JSON.stringify(user)).preferredTheme === 'Dark') {
@@ -37,10 +44,13 @@ let SingleUser = props => {
         }
     }, [user]);
 
+    // Define Active User
     const activeUser = appStore.users ? appStore.users.filter(user => user._id === props.match.params.id)[0] : null;
 
+    // Define postsCount (Amount of posts the user has)
     const postsCount = activeUser && appStore.posts ? appStore.posts.filter(post => post.postedBy.id === props.match.params.id).length : 0;
 
+    // Define Dark Theme Condition
     const condition = user.preferredTheme === 'Dark';
 
     return (
@@ -68,6 +78,4 @@ let SingleUser = props => {
     )
 }
 
-SingleUser = observer(SingleUser);
-
-export default SingleUser;
+export default observer(SingleUser);
