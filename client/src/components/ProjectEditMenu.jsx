@@ -10,6 +10,8 @@ import { FaTimes, FaCheck } from 'react-icons/fa';
 
 import { NavLink } from 'react-router-dom';
 
+import axios from 'axios';
+
 const ProjectEditMenu = props => {
 
     const { project } = props;
@@ -21,7 +23,26 @@ const ProjectEditMenu = props => {
     const githubRef = useRef();
 
     const saveChangeHandler = () => {
-        console.log('Saving Changes');
+
+        const body = {
+            title: titleRef.current.value,
+            description: descRef.current.value,
+            tags: tagsRef.current.value,
+            preview: `https://www.${prevRef.current.value}`,
+            github: `https://github.com/${githubRef.current.value}`
+        }
+
+        if (body.preview === 'https://www.') body.preview = ''
+        if (body.github === 'https://github.com/') body.github = ''
+
+        axios.put(`/api/posts/${project._id}`, body, { 'Content-Type': 'application/json' }).then(res => {
+
+            appStore.fetchPosts();
+
+            alert('Succesfully Updated Project');
+
+        }).catch(err => alert('There was an error. Try again later.'));
+
     }
 
     return (
