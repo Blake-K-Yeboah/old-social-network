@@ -115,6 +115,15 @@ router.put('/:id', (req, res) => {
     Post.findByIdAndUpdate(req.params.id, req.body, (err, doc) => {
         if (err) res.send(500, err);
     })
-})
+});
+
+// Delete Post Route
+router.delete('/:id', (req, res) => {
+    Post.findByIdAndDelete(req.params.id, err => {
+        if (err) res.send(500, err);
+        res.send('Succesfully Deleted Item')
+    });
+});
+
 // Export Router
 module.exports = router;
