@@ -12,6 +12,8 @@ import { NavLink } from 'react-router-dom';
 
 import axios from 'axios';
 
+import classNames from 'classnames';
+
 const ProjectEditMenu = props => {
 
     const { project } = props;
@@ -45,40 +47,46 @@ const ProjectEditMenu = props => {
 
     }
 
+    const condition = appStore.auth.user.preferredTheme === 'Dark';
+
+    const inputClass = classNames({ 'bg-dark': condition, 'text-light': condition });
+
+    const prependClass = classNames({ 'bg-secondary': condition, 'text-light': condition });
+
     return (
         <React.Fragment>
-            {project ? <Card className="mb-5">
+            {project ? <Card className={classNames("mb-5", { 'bg-dark': condition, 'text-light': condition })}>
                 <Card.Img variant="top" src={`/uploads/projects/${project.img}`} />
                 <Card.Body>
                     <Form>
                         <Form.Group>
                             <label htmlFor="title">Title</label>
-                            <FormControl type="text" id="title" placeholder="Title: " defaultValue={project.title} ref={titleRef} />
+                            <FormControl type="text" id="title" placeholder="Title: " defaultValue={project.title} ref={titleRef} className={inputClass} />
                         </Form.Group>
                         <Form.Group>
                             <label htmlFor="description">Description</label>
-                            <FormControl type="text" id="description" placeholder="Description: " defaultValue={project.description} ref={descRef} />
+                            <FormControl type="text" id="description" placeholder="Description: " defaultValue={project.description} ref={descRef} className={inputClass} />
                         </Form.Group>
                         <Form.Group>
                             <label htmlFor="tags">Tags</label>
-                            <FormControl type="text" id="tags" placeholder="Tags: " defaultValue={project.tags} ref={tagsRef} />
+                            <FormControl type="text" id="tags" placeholder="Tags: " defaultValue={project.tags} ref={tagsRef} className={inputClass} />
                         </Form.Group>
                         <Form.Group>
                             <label htmlFor="github">Github Link</label>
                             <InputGroup>
                                 <InputGroup.Prepend>
-                                    <InputGroup.Text>https://github.com/</InputGroup.Text>
+                                    <InputGroup.Text className={prependClass}>https://github.com/</InputGroup.Text>
                                 </InputGroup.Prepend>
-                                <FormControl type="text" id="github" defaultValue={project.github.substring(19)} ref={githubRef} />
+                                <FormControl type="text" id="github" defaultValue={project.github ? project.github.substring(19) : ''} ref={githubRef} className={inputClass} />
                             </InputGroup>
                         </Form.Group>
                         <Form.Group>
                             <label htmlFor="preview">Preview Link</label>
                             <InputGroup>
                                 <InputGroup.Prepend>
-                                    <InputGroup.Text>https://www.</InputGroup.Text>
+                                    <InputGroup.Text className={prependClass}>https://www.</InputGroup.Text>
                                 </InputGroup.Prepend>
-                                <FormControl type="text" id="preview" defaultValue={project.preview.substring(12)} ref={prevRef} />
+                                <FormControl type="text" id="preview" defaultValue={project.preview ? project.preview.substring(12) : ''} ref={prevRef} className={inputClass} />
                             </InputGroup>
                         </Form.Group>
                     </Form>
