@@ -109,5 +109,12 @@ router.post('/:id/dislike', (req, res) => {
         if (err) res.send(500, err);
     })
 });
+
+// Update Post Route
+router.put('/:id', (req, res) => {
+    Post.findByIdAndUpdate(req.params.id, req.body, (err, doc) => {
+        if (err) res.send(500, err);
+    })
+})
 // Export Router
 module.exports = router;
