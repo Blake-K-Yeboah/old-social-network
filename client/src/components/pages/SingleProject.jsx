@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useRef } from 'react'
 
 import appStore from '../../store';
 
@@ -12,14 +12,29 @@ import { Container, Row, Col, Spinner } from 'react-bootstrap';
 
 const SingleProject = props => {
 
+    // Define Contianer Ref
+    let containerRef = useRef();
+
+    // Define User
+    let user = appStore.auth.user;
+
     useEffect(() => {
+
         appStore.fetchPosts();
-    }, []);
+
+        if (user && JSON.parse(JSON.stringify(user)).preferredTheme === 'Dark') {
+            // Change Container Background to dark grey
+            containerRef.current.style.background = "#212121";
+        } else {
+            // Change Container Background to light grey
+            containerRef.current.style.background = "#E9ECEF";
+        }
+    }, [user]);
 
     const project = appStore.posts ? appStore.posts.filter(post => post._id === props.match.params.id)[0] : null;
 
     return (
-        <React.Fragment>
+        <div ref={containerRef}>
             <Navigation />
             <Container className="pt-5 mb-5">
                 <Row className="justify-content-center">
@@ -29,7 +44,7 @@ const SingleProject = props => {
                 </Row>
             </Container>
             <Footer type="large" />
-        </React.Fragment>
+        </div>
     )
 }
 
