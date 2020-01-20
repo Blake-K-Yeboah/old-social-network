@@ -18,6 +18,7 @@ import SingleUser from './components/pages/SingleUser';
 import UserEdit from './components/pages/UserEdit';
 import NotFound from './components/pages/NotFound';
 import SingleProject from './components/pages/SingleProject';
+import ProjectEdit from './components/pages/ProjectEdit';
 
 const App = () => {
   return (
@@ -64,6 +65,14 @@ const App = () => {
         <Route exact path="/project/:id" render={props =>
           localStorage.getItem('jwtToken') ? (
             <SingleProject {...props} />
+          ) : (
+              <Redirect to="/" />
+            )
+        } />
+
+        <Route exact path="/project/edit/:id" render={props =>
+          localStorage.getItem('jwtToken') ? (
+            <ProjectEdit {...props} />
           ) : (
               <Redirect to="/" />
             )
