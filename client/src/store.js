@@ -84,7 +84,7 @@ class Store {
 
     fetchPosts = async () => {
         await axios.get('/api/posts').then(res => {
-            this.posts = res.data.reverse();
+            this.posts = res.data;
         }).catch(err => {
             console.log(err);
         })
