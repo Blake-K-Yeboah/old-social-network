@@ -10,6 +10,8 @@ import { observer } from 'mobx-react';
 
 import { NavLink } from 'react-router-dom';
 
+import classNames from 'classnames';
+
 const Project = props => {
 
     const { project } = props;
@@ -118,8 +120,10 @@ const Project = props => {
         return time;
     }
 
+    const condition = appStore.auth.user.preferredTheme === "Dark";
+
     return (
-        <Card>
+        <Card className={classNames({ 'bg-dark': condition, 'text-light': condition })}>
             <Card.Img variant="top" src={`/uploads/projects/${project.img}`} />
             <Card.Body>
                 <Card.Title className="display-4 mb-4 mt-2">{project.title}</Card.Title>
@@ -135,6 +139,9 @@ const Project = props => {
                 <p className="lead">
                     <span className="font-weight-normal">Tags:</span> {project.tags ? <span>{project.tags}</span> : <span className="text-muted">No Tags</span>}
                 </p>
+                {project.postedBy.id === appStore.auth.user.id ? <p className="lead">
+                    <NavLink to={`/project/edit/${project._id}`} className="text-danger">Edit Project</NavLink>
+                </p> : ''}
                 <hr className="my-4" />
                 <span className="text-success mr-2" style={{ cursor: 'pointer' }} onClick={likeProject}>{liked ? 'Liked' : 'Like'}</span>
                 <Badge variant="success">{project.likes.length}</Badge>
