@@ -14,6 +14,8 @@ html, body {
     background: #E9ECEF;
     height:100%;
     width:100%;
+    scrollbar-color: #DC3545 #212121;
+    scrollbar-width: thin;
 }
 
 body {
