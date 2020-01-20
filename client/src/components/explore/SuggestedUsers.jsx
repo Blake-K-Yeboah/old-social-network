@@ -4,7 +4,7 @@ import React, { useEffect } from 'react'
 import appStore from '../../store';
 
 // Import observer
-import { observer } from 'mobx';
+import { observer } from 'mobx-react';
 
 // Import React bootstrap Components
 import { Card, Media, Spinner, ListGroup, Button } from 'react-bootstrap';
@@ -18,7 +18,7 @@ import classNames from 'classnames';
 // Import Icons
 import { FaUsers } from 'react-icons/fa';
 
-const SuggestedUsers = observer(() => {
+const SuggestedUsers = () => {
 
     // Fetch Users
     useEffect(() => {
@@ -96,6 +96,6 @@ const SuggestedUsers = observer(() => {
 
         </Card>
     )
-})
+}
 
-export default SuggestedUsers;
+export default observer(SuggestedUsers);
