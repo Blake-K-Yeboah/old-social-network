@@ -10,6 +10,8 @@ import Footer from '../layout/Footer';
 
 import { Container, Row, Col, Spinner } from 'react-bootstrap';
 
+import { Helmet } from 'react-helmet';
+
 const SingleProject = props => {
 
     // Define Contianer Ref
@@ -35,6 +37,9 @@ const SingleProject = props => {
 
     return (
         <div ref={containerRef}>
+            <Helmet>
+                <title>DevNetwork - {project ? project.title : 'Loading'}</title>
+            </Helmet>
             <Navigation />
             <Container className="pt-5 mb-5">
                 <Row className="justify-content-center">

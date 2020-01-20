@@ -12,6 +12,8 @@ import UploadHeaderImg from '../UploadHeaderImg';
 import GoBackBtn from '../GoBackBtn';
 import Footer from '../layout/Footer';
 
+import { Helmet } from 'react-helmet';
+
 let UserEdit = props => {
 
     // Define Contianer Ref
@@ -36,6 +38,9 @@ let UserEdit = props => {
 
     return (
         <div ref={containerRef}>
+            <Helmet>
+                <title>DevNetwork - Editing User: {activeUser ? activeUser.firstname : 'Loading'}</title>
+            </Helmet>
             <Navigation />
             <ProfileHeader noedit={true} activeUser={activeUser} />
             <EditMenu />

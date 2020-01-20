@@ -11,6 +11,8 @@ import Footer from '../layout/Footer';
 
 import { Container, Row, Col } from 'react-bootstrap';
 
+import { Helmet } from 'react-helmet';
+
 const ProjectEdit = props => {
     // Define Contianer Ref
     let containerRef = useRef();
@@ -35,6 +37,9 @@ const ProjectEdit = props => {
 
     return (
         <div ref={containerRef}>
+            <Helmet>
+                <title>DevNetwork - Editing Project: {project ? project.title : 'Loading'}</title>
+            </Helmet>
             <Navigation />
             <Container className="pt-5">
                 <Row className="justify-content-center">

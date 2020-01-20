@@ -11,6 +11,8 @@ import appStore from '../../store';
 
 import { observer } from 'mobx-react';
 
+import { Helmet } from 'react-helmet';
+
 const Users = () => {
 
     // Define User
@@ -29,6 +31,9 @@ const Users = () => {
 
     return (
         <React.Fragment>
+            <Helmet>
+                <title>DevNetwork - Browse Users</title>
+            </Helmet>
             <Navigation />
             <Container className="my-5">
                 <Row>

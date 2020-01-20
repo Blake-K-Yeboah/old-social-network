@@ -14,6 +14,8 @@ import { Container, Row, Col } from 'react-bootstrap';
 
 import classNames from 'classnames';
 
+import { Helmet } from 'react-helmet';
+
 let SingleUser = props => {
 
     // Define Container Ref
@@ -42,7 +44,10 @@ let SingleUser = props => {
     const condition = user.preferredTheme === 'Dark';
 
     return (
-        <div ref={containerRef}>
+        <div ref={containerRef} style={{ minHeight: '100vh' }}>
+            <Helmet>
+                <title>DevNetwork - {activeUser ? `${activeUser.firstname} ${activeUser.lastname}` : 'Loading'}</title>
+            </Helmet>
             <Navigation />
             <ProfileHeader activeUser={activeUser} />
             <Container className="mt-5">
@@ -58,7 +63,7 @@ let SingleUser = props => {
                     </Col>
                 </Row>
             </Container>
-            <Footer type="large" />
+            {postsCount < 2 ? <Footer type="small" /> : <Footer type="large" />}
         </div>
     )
 }

@@ -14,6 +14,8 @@ import appStore from '../../store';
 
 import { observer } from 'mobx-react';
 
+import { Helmet } from 'react-helmet';
+
 const Explore = () => {
 
     // Define Contianer Ref
@@ -35,6 +37,9 @@ const Explore = () => {
 
     return (
         <div ref={containerRef}>
+            <Helmet>
+                <title>DevNetwork - Explore</title>
+            </Helmet>
             <Navigation />
             <Container className="my-5">
                 <Row>
