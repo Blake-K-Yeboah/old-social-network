@@ -25,16 +25,11 @@ const SuggestedUsers = () => {
         appStore.fetchUsers();
     }, []);
 
-    // Function to parse obj 
-    const parse = obj => {
-        return JSON.parse(JSON.stringify(obj))
-    }
-
     // Define Users
     const users = appStore.users;
 
     // Define Active User (first 3 not including logged in) to be displayed
-    const activeUsers = users ? parse(users).filter(user => user._id !== parse(appStore.auth.user).id) : null;
+    const activeUsers = users ? users.filter(user => user._id !== appStore.auth.user.id) : null;
 
     // Define Theme
     const theme = appStore.auth.user.preferredTheme;
