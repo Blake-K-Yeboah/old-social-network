@@ -11,6 +11,14 @@ const posts = require("./routes/api/posts.routes");
 // Initialize Express
 const app = express();
 
+/*Adds the react production build to serve react requests*/
+app.use(express.static(path.join(__dirname, "/client/build")));
+
+/*React root*/
+app.get("*", (req, res) => {
+    res.sendFile(path.join(__dirname + "/client/build/index.html"));
+});
+
 // Bodyparser middleware
 app.use(
     bodyParser.urlencoded({
