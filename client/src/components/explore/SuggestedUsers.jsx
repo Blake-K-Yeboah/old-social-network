@@ -4,7 +4,7 @@ import React, { useEffect } from 'react'
 import appStore from '../../store';
 
 // Import observer
-import { observer } from 'mobx-react';
+import { observer } from 'mobx';
 
 // Import React bootstrap Components
 import { Card, Media, Spinner, ListGroup, Button } from 'react-bootstrap';
