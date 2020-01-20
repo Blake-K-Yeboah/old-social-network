@@ -18,7 +18,7 @@ import classNames from 'classnames';
 // Import Icons
 import { FaUsers } from 'react-icons/fa';
 
-const SuggestedUsers = () => {
+const SuggestedUsers = observer(() => {
 
     // Fetch Users
     useEffect(() => {
@@ -96,6 +96,6 @@ const SuggestedUsers = () => {
 
         </Card>
     )
-}
+})
 
-export default observer(SuggestedUsers);
+export default SuggestedUsers;
