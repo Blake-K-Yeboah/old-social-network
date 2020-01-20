@@ -19,7 +19,7 @@ class Store {
 
     // Action to set an auth error
     setError = (error) => {
-        this.auth.error = error;
+        appStore.auth.error = error;
     }
 
     // Sign Up Form User Input
@@ -32,7 +32,7 @@ class Store {
 
     // Action to set Sign Up Form User Input
     setUserInput = (userInput) => {
-        this.userInput = userInput;
+        appStore.userInput = userInput;
     }
 
     // Sign Up Modal Viewing Status (false means hidden)
@@ -40,30 +40,30 @@ class Store {
 
     // Action to close sign up modal
     closeSignUpModal = () => {
-        this.signUpModalStatus = false;
+        appStore.signUpModalStatus = false;
     }
 
     // Action to open sign up modal
     openSignUpModal = () => {
-        this.signUpModalStatus = true;
+        appStore.signUpModalStatus = true;
     }
 
     // Action to set the current user
     setCurrentUser = (user) => {
-        this.auth.user = user;
+        appStore.auth.user = user;
 
         if (!user) {
-            this.auth.isAuthenticated = false;
+            appStore.auth.isAuthenticated = false;
         } else {
-            this.auth.isAuthenticated = true;
+            appStore.auth.isAuthenticated = true;
         }
     }
 
     // Action to update the current user
     updateActiveUser = () => {
-        axios.get(`/api/users/${this.auth.user.id}`).then(res => {
-            let newUser = { ...res.data, _id: undefined, id: this.auth.user.id };
-            this.setCurrentUser(newUser);
+        axios.get(`/api/users/${appStore.auth.user.id}`).then(res => {
+            let newUser = { ...res.data, _id: undefined, id: appStore.auth.user.id };
+            appStore.setCurrentUser(newUser);
         }).catch(err => console.error(err));
     }
 
@@ -73,7 +73,7 @@ class Store {
     // Action to fetch users from db
     fetchUsers = async () => {
         await axios.get('/api/users').then(res => {
-            this.users = res.data;
+            appStore.users = res.data;
         }).catch(err => {
             console.log(err);
         })
@@ -84,7 +84,7 @@ class Store {
 
     fetchPosts = async () => {
         await axios.get('/api/posts').then(res => {
-            this.posts = res.data;
+            appStore.posts = res.data;
         }).catch(err => {
             console.log(err);
         })
