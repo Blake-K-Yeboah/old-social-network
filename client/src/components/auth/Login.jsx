@@ -15,10 +15,12 @@ import jwt_decode from 'jwt-decode';
 // Import axios 
 import axios from 'axios';
 
+// Import Icon
 import { GoSignIn } from 'react-icons/go';
 
-let Login = () => {
+const Login = () => {
 
+    // Handle Login
     const loginHandler = () => {
         axios
             .post("/api/users/login", appStore.userInput)
@@ -48,6 +50,7 @@ let Login = () => {
             })
     }
 
+    // Handle Input Change
     const changeHandler = e => {
 
         let userInput = appStore.userInput;
@@ -59,13 +62,11 @@ let Login = () => {
 
     return (
         <Form inline>
-            <FormControl type="email" placeholder="Email" id="email" className="mr-sm-2" defaultValue={appStore.userInput.email} onChange={changeHandler}/>
-            <FormControl type="password" placeholder="Password" id="password" className="mr-sm-2" defaultValue={appStore.userInput.password}  onChange={changeHandler}/>
-            <Button variant="outline-light" onClick={loginHandler}>Login <GoSignIn style={{marginLeft: '5px'}}/></Button>
+            <FormControl type="email" placeholder="Email" id="email" className="mr-sm-2" defaultValue={appStore.userInput.email} onChange={changeHandler} />
+            <FormControl type="password" placeholder="Password" id="password" className="mr-sm-2" defaultValue={appStore.userInput.password} onChange={changeHandler} />
+            <Button variant="outline-light" onClick={loginHandler}>Login <GoSignIn style={{ marginLeft: '5px' }} /></Button>
         </Form>
     )
 }
 
-Login = observer(Login);
-
-export default Login
+export default observer(Login);

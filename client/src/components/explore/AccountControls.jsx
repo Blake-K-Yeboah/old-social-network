@@ -1,25 +1,35 @@
 import React, { useState } from 'react'
 
+// Import Store
 import appStore from '../../store';
 
+// Import Observer
 import { observer } from 'mobx-react';
 
+// Import Bootstrap Components
 import { Card, Media, Button, ListGroup } from 'react-bootstrap';
 
+// Import NavLink and redirect from react routrer dom
 import { NavLink, Redirect } from 'react-router-dom';
 
+// Import axios
 import axios from 'axios';
 
+// Import classnames
 import classNames from 'classnames';
 
+// Import Icon
 import { GoSignOut } from 'react-icons/go';
 
-let AccountControls = () => {
+const AccountControls = () => {
 
+    // Define User
     const user = appStore.auth.user;
 
+    // Define Redirect Status
     const [redirect, setRedirect] = useState(false);
 
+    // Handle Logout
     const logOutHandler = () => {
 
         // Remove token from local storage
@@ -31,13 +41,17 @@ let AccountControls = () => {
         // Set current user to empty object {} which will set isAuthenticated to false
         appStore.setCurrentUser(null)
 
+        // Set User Input to empty obj
         appStore.setUserInput({});
 
+        // Redirect User
         setRedirect(true);
     }
 
+    // Define User's theme
     const theme = appStore.auth.user.preferredTheme;
 
+    // Define Dark Theme condition for conditional classes
     const condition = theme === 'Dark';
 
     return (
@@ -74,7 +88,7 @@ let AccountControls = () => {
 
                         </ListGroup>
 
-                        <Button variant="danger" onClick={logOutHandler}>Logout <GoSignOut style={{marginLeft: '5px'}} /></Button>
+                        <Button variant="danger" onClick={logOutHandler}>Logout <GoSignOut style={{ marginLeft: '5px' }} /></Button>
                     </Card.Body>
 
                 </Card>
@@ -85,6 +99,4 @@ let AccountControls = () => {
     )
 }
 
-AccountControls = observer(AccountControls);
-
-export default AccountControls;
+export default observer(AccountControls);

@@ -1,16 +1,20 @@
 import React, { useRef } from 'react';
 
+// Import Bootstrap components
 import { Modal, Button, Form, InputGroup, FormControl } from 'react-bootstrap';
 
+// Import Icons
 import { FaTimes, FaCheck } from 'react-icons/fa';
 
 const MoreDetails = props => {
 
+    // Define input Refs
     const descRef = useRef();
     const tagsRef = useRef();
     const prevRef = useRef();
     const githubRef = useRef();
 
+    // Function that saves details to state
     const addDetails = () => {
 
         const newInput = {
@@ -67,11 +71,11 @@ const MoreDetails = props => {
             </Modal.Body>
             <Modal.Footer>
                 <Button variant="secondary" onClick={props.handleClose}>
-                    Cancel <FaTimes style={{marginLeft: '5px'}}/>
-          </Button>
+                    Cancel <FaTimes style={{ marginLeft: '5px' }} />
+                </Button>
                 <Button variant="danger" onClick={addDetails}>
-                    Add Details <FaCheck style={{marginLeft: '5px'}}/>
-          </Button>
+                    Add Details <FaCheck style={{ marginLeft: '5px' }} />
+                </Button>
             </Modal.Footer>
         </Modal>
     )

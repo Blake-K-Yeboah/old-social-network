@@ -15,11 +15,13 @@ import axios from 'axios';
 // Import classnames
 import classNames from 'classnames';
 
+// Import Icons
 import { FaUserPlus, FaTimes } from 'react-icons/fa';
 import { GoAlert } from 'react-icons/go';
 
-let SignUp = () => {
+const SignUp = () => {
 
+    // User Input State
     const [userInput, setUserInput] = useState({
         firstname: '',
         lastname: '',
@@ -27,6 +29,7 @@ let SignUp = () => {
         password: ''
     });
 
+    // Handle Sign Up
     const signUpHandler = () => {
         axios
             .post("/api/users/register", userInput)
@@ -47,18 +50,16 @@ let SignUp = () => {
             });
     }
 
+    // Handle Input Change
     const changeHandler = e => {
         setUserInput({ ...userInput, [e.target.id]: e.target.value });
     }
 
+    // Handle CLose (modal)
     const closeHandler = () => {
         appStore.closeSignUpModal();
         appStore.setError(false);
     }
-
-    let classes = {};
-
-    classes['d-none'] = !appStore.auth.error;
 
     return (
         <Modal show={appStore.signUpModalStatus} onHide={closeHandler} centered>
@@ -66,8 +67,8 @@ let SignUp = () => {
                 <Modal.Title className="font-weight-normal">Create an account</Modal.Title>
             </Modal.Header>
             <Modal.Body>
-                <Alert variant="danger" className={classNames(classes)}>
-                    <GoAlert style={{marginRight: '5px'}}/> {appStore.auth.error}
+                <Alert variant="danger" className={classNames({ 'd-none': !appStore.auth.error })}>
+                    <GoAlert style={{ marginRight: '5px' }} /> {appStore.auth.error}
                 </Alert>
                 <Form>
                     <Form.Row className="mb-4">
@@ -92,16 +93,14 @@ let SignUp = () => {
             </Modal.Body>
             <Modal.Footer>
                 <Button variant="secondary" onClick={closeHandler}>
-                    Close <FaTimes style={{marginLeft: '5px'}}/>
+                    Close <FaTimes style={{ marginLeft: '5px' }} />
                 </Button>
                 <Button variant="danger" onClick={signUpHandler}>
-                    Sign Up <FaUserPlus style={{marginLeft: '5px'}}/>
+                    Sign Up <FaUserPlus style={{ marginLeft: '5px' }} />
                 </Button>
             </Modal.Footer>
         </Modal >
     )
 }
 
-SignUp = observer(SignUp);
-
-export default SignUp
+export default observer(SignUp);

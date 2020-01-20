@@ -21,11 +21,13 @@ import appStore from '../../store';
 // Import Axios
 import axios from 'axios';
 
+// Import Icons
 import { IoIosCode } from 'react-icons/io';
 import { GoSignOut } from 'react-icons/go';
 
-let Navigation = () => {
+const Navigation = () => {
 
+    // Log Out handler
     const logOutHandler = () => {
         // Remove token from local storage
         localStorage.removeItem("jwtToken");
@@ -41,6 +43,7 @@ let Navigation = () => {
         window.location.reload();
     }
 
+    // Log Out Content (only shown if user authenticated)
     const logOutContent = appStore.auth.isAuthenticated ? (
         <div>
             <span className="text-light mr-3">
@@ -78,6 +81,4 @@ let Navigation = () => {
     )
 }
 
-Navigation = observer(Navigation);
-
-export default Navigation;
+export default observer(Navigation);

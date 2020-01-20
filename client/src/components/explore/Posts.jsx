@@ -1,15 +1,20 @@
 import React from 'react'
 
+// Import Post List Component
 import PostList from './PostList';
 
+// Import classnames
 import classNames from 'classnames';
 
+// Import appStore
 import appStore from '../../store';
 
+// Import observer
 import { observer } from 'mobx-react';
 
 const Posts = () => {
-    
+
+    // Define Dark Condition
     const condition = appStore.auth.user.preferredTheme === 'Dark';
 
     return (

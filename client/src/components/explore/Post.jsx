@@ -1,15 +1,21 @@
 import React, { useState } from 'react';
 
+// Import Bootstrap Components
 import { Row, Col, Card, Badge, OverlayTrigger, Popover } from 'react-bootstrap';
 
+// Import NavLink
 import { NavLink } from 'react-router-dom';
 
+// Import Axios
 import axios from 'axios';
 
+// Import appStore
 import appStore from '../../store';
 
+// Import Observer
 import { observer } from 'mobx-react';
 
+// Import classnames
 import classNames from 'classnames';
 
 const Post = ({ post }) => {
@@ -82,6 +88,7 @@ const Post = ({ post }) => {
         return time;
     }
 
+    // Function to like project
     const likeProject = () => {
         if (liked) {
             alert('Youve Already Liked this post');
@@ -101,6 +108,7 @@ const Post = ({ post }) => {
         }
     }
 
+    // Function to dislike project
     const dislikeProject = () => {
         if (disliked) {
             alert('Youve Already Disliked this post');
@@ -120,6 +128,7 @@ const Post = ({ post }) => {
         }
     }
 
+    // Define Popover
     const popover = (
         <Popover id="popover-basic" className={classNames({ 'bg-dark': condition })}>
             <Popover.Title as="h4" className={classNames({ 'bg-dark': condition, 'text-light': condition })}>Edit Project</Popover.Title>
@@ -129,6 +138,7 @@ const Post = ({ post }) => {
         </Popover>
     );
 
+    // Define Edit Icon
     const edit = (
         <OverlayTrigger trigger="click" placement="right" overlay={popover}>
             <span className={classNames('float-right', { 'text-dark': !condition, 'text-light': condition })} style={{ cursor: 'pointer' }}>&#8942;</span>

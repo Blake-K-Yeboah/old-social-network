@@ -1,23 +1,31 @@
 import React, { useEffect } from 'react'
 
+// Import appStore
 import appStore from '../../store';
 
+// Import observer
 import { observer } from 'mobx-react';
 
+// Import Navlink
 import { NavLink } from 'react-router-dom';
 
+// Import React Bootstrap Components
 import { ListGroup, Media, Spinner } from 'react-bootstrap';
 
+// Import classNames
 import classNames from 'classnames';
 
-let UserList = () => {
+const UserList = () => {
 
+    // Fetch Users
     useEffect(() => {
         appStore.fetchUsers();
     }, []);
 
+    // Define Users
     const users = appStore.users;
 
+    // Define DarkTHeme Condition
     const condition = appStore.auth.user.preferredTheme === 'Dark';
 
     return (
@@ -61,6 +69,4 @@ let UserList = () => {
     )
 }
 
-UserList = observer(UserList);
-
-export default UserList
+export default observer(UserList);

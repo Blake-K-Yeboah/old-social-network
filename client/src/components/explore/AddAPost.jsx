@@ -1,25 +1,36 @@
 import React, { useState } from 'react'
 
+// Import React bootstrap components
 import { Card, Form, FormControl, InputGroup, Button, Alert } from 'react-bootstrap';
 
+// More details modal
 import MoreDetails from './MoreDetails';
 
+// Import appStore
 import appStore from '../../store';
 
+// Import Observer
 import { observer } from 'mobx-react';
 
+// Import Axios
 import axios from 'axios';
 
+// Import classNames
 import classNames from 'classnames';
 
+// Import Icons
 import { FaPlus } from 'react-icons/fa';
-
 import { GoAlert } from 'react-icons/go';
 
 const AddAPost = () => {
 
+    // Deifne File State
     const [file, setFile] = useState('');
+
+    // Define Filename state
     const [fileName, setFileName] = useState('Choose File');
+
+    // Define userInput state
     const [userInput, setUserInput] = useState({
         title: '',
         description: '',
@@ -27,11 +38,14 @@ const AddAPost = () => {
         github: '',
         preview: ''
     });
+
+    // Define Error State
     const [error, setError] = useState(null);
 
     // For Add Details Modal
     const [show, setShow] = useState(false);
 
+    // Open and Close Modal Handlers
     const handleOpen = () => setShow(true);
     const handleClose = () => setShow(false);
 
@@ -44,6 +58,7 @@ const AddAPost = () => {
 
     };
 
+    // Handle Title Input Change
     const titleOnChange = e => {
         setUserInput({
             ...userInput,
@@ -51,6 +66,7 @@ const AddAPost = () => {
         });
     }
 
+    /// Post Project function
     const postProject = () => {
 
         // Define formData
@@ -68,7 +84,6 @@ const AddAPost = () => {
             userId: id
         }
 
-        //formData.append('data', data);
         Object.entries(data).forEach(entry => {
             formData.append(entry[0], entry[1]);
         });
@@ -82,8 +97,10 @@ const AddAPost = () => {
         })
     }
 
+    // Define theme
     const theme = appStore.auth.user.preferredTheme;
 
+    // Define Dark Condition
     const condition = theme === 'Dark';
 
     return (
@@ -94,7 +111,7 @@ const AddAPost = () => {
                 </Card.Header>
                 <Card.Body>
                     <Alert variant="danger" className={!error ? 'd-none' : ''}>
-                        <GoAlert style={{marginRight: '5px'}}/> {error}
+                        <GoAlert style={{ marginRight: '5px' }} /> {error}
                     </Alert>
                     <Form onSubmit={e => e.preventDefault()}>
                         <InputGroup className="mb-3">
@@ -108,13 +125,13 @@ const AddAPost = () => {
                         </InputGroup>
                         <Form.Group>
                             <label htmlFor="title">Title</label>
-                            <FormControl type="text" placeholder="Title: " id="title" onChange={titleOnChange} defaultValue={userInput.title} className={condition ? 'bg-dark text-light' : ''}/>
+                            <FormControl type="text" placeholder="Title: " id="title" onChange={titleOnChange} defaultValue={userInput.title} className={condition ? 'bg-dark text-light' : ''} />
                         </Form.Group>
                         <Form.Group>
                             <span className="text-danger" style={{ cursor: "pointer" }} onClick={handleOpen} >Add More Details</span>
                         </Form.Group>
                     </Form>
-                    <Button variant="danger" onClick={postProject}>Post Project <FaPlus style={{marginLeft: '5px', marginTop: '-2px'}}/></Button>
+                    <Button variant="danger" onClick={postProject}>Post Project <FaPlus style={{ marginLeft: '5px', marginTop: '-2px' }} /></Button>
                 </Card.Body>
             </Card>
             <MoreDetails userInput={userInput} setUserInput={setUserInput} handleClose={handleClose} show={show} />
@@ -122,4 +139,4 @@ const AddAPost = () => {
     )
 }
 
-export default observer(AddAPost)
+export default observer(AddAPost);

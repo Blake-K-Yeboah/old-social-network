@@ -1,33 +1,45 @@
 import React, { useEffect } from 'react'
 
+// Import appStore
 import appStore from '../../store';
 
+// Import observer
 import { observer } from 'mobx-react';
 
+// Import React bootstrap Components
 import { Card, Media, Spinner, ListGroup, Button } from 'react-bootstrap';
 
+// Import NavLink
 import { NavLink } from 'react-router-dom';
 
+// Import classNames
 import classNames from 'classnames';
 
+// Import Icons
 import { FaUsers } from 'react-icons/fa';
 
-let SuggestedUsers = () => {
+const SuggestedUsers = () => {
 
+    // Fetch Users
     useEffect(() => {
         appStore.fetchUsers();
     }, []);
 
+    // Function to parse obj 
     const parse = obj => {
         return JSON.parse(JSON.stringify(obj))
     }
 
+    // Define Users
     const users = appStore.users;
 
+    // Define Active User (first 3 not including logged in) to be displayed
     const activeUsers = users ? parse(users).filter(user => user._id !== parse(appStore.auth.user).id) : null;
 
+    // Define Theme
     const theme = appStore.auth.user.preferredTheme;
 
+    // Define Dark Theme Condition
     const condition = theme === "Dark";
 
     return (
@@ -39,7 +51,7 @@ let SuggestedUsers = () => {
                 <ListGroup variant="flush">
                     {users ? activeUsers.slice(0, 3).map((user, index) => {
                         return (
-                            <ListGroup.Item key={user._id} className={classNames({'py-3': index === 1, 'pb-2': index !== 1, 'bg-dark': condition })}>
+                            <ListGroup.Item key={user._id} className={classNames({ 'py-3': index === 1, 'pb-2': index !== 1, 'bg-dark': condition })}>
                                 <Media>
 
                                     <img src={`/uploads/profile/${user.profileIcon}`} alt={`${user.firstname} Profile Icon`} className="mr-3 mt-1" style={{ width: '48px', borderRadius: '50%' }} />
@@ -48,7 +60,7 @@ let SuggestedUsers = () => {
 
                                         <h5 className="mt-0">
 
-                                            <NavLink to={`/user/${user._id}`} className={classNames({"text-dark": !condition, "text-light": condition})}>
+                                            <NavLink to={`/user/${user._id}`} className={classNames({ "text-dark": !condition, "text-light": condition })}>
 
                                                 {`${user.firstname} ${user.lastname}`}
 
@@ -76,7 +88,7 @@ let SuggestedUsers = () => {
 
                         <Button variant="danger">
 
-                            View All <FaUsers style={{marginLeft: '5px'}}/>
+                            View All <FaUsers style={{ marginLeft: '5px' }} />
 
 
                         </Button>
@@ -91,6 +103,4 @@ let SuggestedUsers = () => {
     )
 }
 
-SuggestedUsers = observer(SuggestedUsers);
-
-export default SuggestedUsers
+export default observer(SuggestedUsers);
