@@ -23,7 +23,7 @@ const PostList = props => {
     let userId = props.userId || false;
 
     // Define Posts
-    const posts = !userId && appStore.posts ? appStore.posts : appStore.posts ? appStore.posts.filter(post => post.postedBy.id === userId) : [];
+    const posts = !userId && appStore.posts ? appStore.posts.reverse() : appStore.posts ? appStore.posts.filter(post => post.postedBy.id === userId).reverse() : [];
 
     return (
         <React.Fragment>
